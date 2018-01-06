@@ -54,7 +54,7 @@ client.setInterval(function play()
         if(uptimer > 5)
         { status = "dnd"}
 client.user.setActivity(manse, { type: 3}); // type: 2 - Слушает
-client.user.setPresence(status)
+client.user.setStatus(status)
       
     }})
 }, 2500)
