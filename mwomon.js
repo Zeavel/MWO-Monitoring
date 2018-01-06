@@ -63,7 +63,24 @@ client.user.setStatus(statuse)
 
 client.on('message', message =>
 {
-
+if(commandIs("test", message))
+{
+   var mysql = require('mysql')
+        var coninfo = {
+          host: "sql10.freemysqlhosting.net",
+          user: "sql10214385",
+          password: "hjLYb35UGl",
+          database: "sql10214385"
+        }
+        
+        var con = mysql.createConnection(coninfo);
+        
+        con.connect(err => {
+          if (err) throw(err);
+          console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
+          con.query("SHOW TABLES", console.log)
+        }) 
+}
 if(commandIs('uptime', message))
 {
     var url = "http://haont.ru/mwo/mon";
