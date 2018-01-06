@@ -191,7 +191,7 @@ if(fs.readFileSync("./accmwo/players.txt").includes(player))
 {
   message.channel.sendMessage({embed: {
     color: 16711680,
-    description: "**Вы уже привязали свой аккаунт** "
+    description: "**You already linked your account** "
     
     }})
 }
@@ -200,7 +200,7 @@ if(!fs.readFileSync("./accmwo/players.txt").includes(player))
   fs.appendFileSync("./accmwo/players.txt", player + " : " + message.author.tag + ";")
   message.channel.sendMessage({embed: {
       color: 6604900,
-      description: "**Аккаунт успешно привязан** "
+      description: "**Account successfully linked** "
       
       }})
     }
