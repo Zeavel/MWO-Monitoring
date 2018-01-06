@@ -185,7 +185,7 @@ if(coorx == -431602080 && coory == -431602080)
 
       }})
 }
-if(commandIs("link", message))
+if(commandIs("sync", message))
 {
 var player = message.content.substring(8)
 if(fs.readFileSync("./accmwo/players.txt").includes(player))
