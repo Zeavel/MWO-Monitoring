@@ -192,7 +192,7 @@ var player = message.content.substring(8)
 
 });
 
-client.login('process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
 
 
 
