@@ -185,7 +185,7 @@ if(coorx == -431602080 && coory == -431602080)
 
       }})
 }
-if(commandIs("sync", message))
+if(commandIs("link", message))
 {
 var player = message.content.substring(8)
 if(fs.readFileSync("./accmwo/players.txt").includes(player))
@@ -218,7 +218,7 @@ if(!fs.readFileSync("./accmwo/players.txt").includes(player))
       description: "**This account does not exist** "
       
       }})
-    }
+    
 }
 if(fs.readFileSync("./accmwo/players.txt").includes(player))
 {
@@ -231,6 +231,7 @@ if(fs.readFileSync("./accmwo/players.txt").includes(player))
     description: "**You have successfully unlinked an account** "
     
     }})
+}
 }
 if(commandIs("lidsadnk", message))
 {
