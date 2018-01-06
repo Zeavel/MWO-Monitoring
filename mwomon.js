@@ -65,6 +65,7 @@ client.on('message', message =>
 {
 if(commandIs("test", message))
 {
+  var player = message.content.substring(8)
    var mysql = require('mysql')
         var coninfo = {
           host: "sql10.freemysqlhosting.net",
@@ -78,7 +79,16 @@ if(commandIs("test", message))
         con.connect(err => {
           if (err) throw(err);
           console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-          con.query("SHOW TABLES", console.log)
+          con.query(`SELECT * FROM Tag WHERE Nickname = '${player}'`, (err, rows) => {
+            if(err) throw err;
+
+            let sql;
+            if(rows.length < 1)
+            {
+              sql = `INSERT INTO Tag (Nickname, Tag) VALUES ('${player}', ${message.author.tag})`
+            }
+            con.query(sql, console.log)
+          })
         }) 
 }
 if(commandIs('uptime', message))
