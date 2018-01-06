@@ -1,0 +1,13 @@
+{
+    "name" : "Test",
+    "description" : "test",
+    "version" : "0.0.0",
+    "main" : "mwomon.js",
+    "scripts": { 
+    "start": "node mwomon.js"
+    },
+    "dependencies": { 
+     "discord.js": "11.2.1",
+     "request": "2.81.0"
+    }
+}
