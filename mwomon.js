@@ -148,6 +148,7 @@ if(coorx == -431602080 && coory == -431602080)
         {
           name = "**" + manse + "**"
         } 
+            fs.writeFileSync('./players/players.txt', "")
           fs.appendFileSync('./players/players.txt', "**" + id + ".** " + name + " - **[" + rayon + "]**\n")
         }
 
@@ -161,7 +162,7 @@ if(coorx == -431602080 && coory == -431602080)
     .addField(uptima, fs.readFileSync('./players/players.txt', 'utf8') + "\n[View all information](http://haont.ru/mwo/mon)")
 
       message.channel.sendMessage({embed})
-  fs.unlinkSync('./players/players.txt')
+  fs.writeFileSync('./players/players.txt', "")
       }
       else
       {
