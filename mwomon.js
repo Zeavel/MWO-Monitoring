@@ -49,7 +49,7 @@ client.setInterval(function play()
  var uptimer =  parseInt(manse.toString().replace(/players online/, ''))
  if(uptimer = 0)
  { status = "idle"}
-        if(1 >= uptimer <= 5)
+        if(uptimer 1 >= && uptimer <= 5)
         { status = "online"}
         if(uptimer > 5)
         { status = "dnd"}
