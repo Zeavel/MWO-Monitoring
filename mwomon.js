@@ -185,7 +185,7 @@ if(coorx == -431602080 && coory == -431602080)
 
       }})
 }
-if(commandIs("sync", message))
+if(commandIs("link", message))
 {
 var player = message.content.substring(8)
 if(fs.readFileSync("./accmwo/players.txt").includes(player))
@@ -206,7 +206,32 @@ if(!fs.readFileSync("./accmwo/players.txt").includes(player))
       }})
     }
 }
-if(commandIs("chel", message))
+    if(commandIs("unlink", message))
+{
+var player = message.content.substring(10)
+if(fs.readFileSync("./accmwo/players.txt").includes(player))
+{
+
+  var unlinkinfo = fs.readFileSync("./accmwo/players.txt").toString().replace(player, "")
+  var unlinkinfa = unlinkinfo.replace(message.author.tag, "")
+  fs.writeFileSync("./accmwo/players.txt", unlinkinfa)
+  message.channel.send({embed: {
+    color: 16711680,
+    description: "**You have successfully unlinked an account** "
+    
+    }})
+}
+if(!fs.readFileSync("./accmwo/players.txt").includes(player))
+{ 
+
+  message.channel.send({embed: {
+      color: 6604900,
+      description: "**this account does not exist** "
+      
+      }})
+    }
+}
+if(commandIs("lidsadnk", message))
 {
  var player = message.content.substring(8)
   var cheli = fs.readFileSync("./accmwo/players.txt", 'utf8')
