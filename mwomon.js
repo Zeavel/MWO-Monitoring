@@ -45,7 +45,7 @@ client.setInterval(function play()
       var $ = cheerio.load(body)
   
       var manse = $('h2').text()
-var game = client.user.presence.game.name.toString()
+
 
 client.user.setGame(manse)
       
