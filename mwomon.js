@@ -188,7 +188,7 @@ if(coorx == -431602080 && coory == -431602080)
 if(commandIs("sync", message))
 {
 var player = message.content.substring(8)
-if(fs.readFileSync("./accmwo/players.txt").includes(message.author.tag))
+if(fs.readFileSync("./accmwo/players.txt").includes(player))
 {
   message.channel.send({embed: {
     color: 16711680,
@@ -196,7 +196,7 @@ if(fs.readFileSync("./accmwo/players.txt").includes(message.author.tag))
     
     }})
 }
-if(!fs.readFileSync("./accmwo/players.txt").includes(message.author.tag))
+if(!fs.readFileSync("./accmwo/players.txt").includes(player))
 { 
   fs.appendFileSync("./accmwo/players.txt", player + " : " + message.author.tag + ";")
   message.channel.send({embed: {
