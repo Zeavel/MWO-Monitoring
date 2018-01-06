@@ -1,1 +1,1 @@
-darudnik : darudnik#4008; osdever : osdever#4170;
+osdever : osdever#4170;
