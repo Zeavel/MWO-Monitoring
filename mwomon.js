@@ -46,15 +46,16 @@ client.setInterval(function play()
       var $ = cheerio.load(body)
   
       var manse = $('div > #mwo_status_container > h2').text()
- var uptimer =  parseInt(manse.toString().replace(/players online/, ''))
- if(uptimer = 0)
+ var uptimer =  manse.toString().replace(/players online/, '')
+ /*if(uptimer = 0)
  { status = "idle"}
         if(uptimer 1 >= && uptimer <= 5)
         { status = "online"}
         if(uptimer > 5)
-        { status = "dnd"}
+        { status = "dnd"}*/
 client.user.setActivity(manse, { type: 3}); // type: 2 - Слушает
-client.user.setStatus(status)
+//client.user.setStatus(status)
+        console.log(uptimer)
       
     }})
 }, 2500)
