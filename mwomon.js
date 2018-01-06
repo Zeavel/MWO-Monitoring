@@ -47,6 +47,7 @@ client.setInterval(function play()
   
       var manse = $('div > #mwo_status_container > h2').text()
  var uptimer =  manse.toString().replace(/players online/, '')
+ var numb = parseInt(uptimer)
  /*if(uptimer = 0)
  { status = "idle"}
         if(uptimer 1 >= && uptimer <= 5)
@@ -55,7 +56,7 @@ client.setInterval(function play()
         { status = "dnd"}*/
 client.user.setActivity(manse, { type: 3}); // type: 2 - Слушает
 //client.user.setStatus(status)
-        console.log(uptimer)
+        console.log(numb)
       
     }})
 }, 2500)
