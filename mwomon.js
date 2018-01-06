@@ -181,12 +181,11 @@ if(coorx == -431602080 && coory == -431602080)
 }
 if(commandIs("sync", message))
 {
-  dir = `./accmwo/`
 var player = message.content.substring(8)
-  fs.writeFileSync(dir + player + ".txt", message.author.tag)
+  fs.writeFileSync(`./accmwo/` + player + ".txt", message.author.tag)
   message.channel.sendMessage({embed: {
       color: 6604900,
-      description: "**Аккаунт успешно привязан**"
+      description: "**Аккаунт успешно привязан **" + player
       
       }})
 }
