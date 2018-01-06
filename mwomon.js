@@ -63,7 +63,7 @@ client.user.setStatus(statuse)
 
 client.on('message', message =>
 {
-if(commandIs("test", message))
+/*if(commandIs("test", message))
 {
   var player = message.content.substring(8)
    var mysql = require('mysql')
@@ -90,7 +90,7 @@ if(commandIs("test", message))
             con.query(sql, console.log)
           })
         }) 
-}
+}*/
 if(commandIs('uptime', message))
 {
     var url = "http://haont.ru/mwo/mon";
