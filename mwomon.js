@@ -140,15 +140,20 @@ if(coorx == -431602080 && coory == -431602080)
 
 }
           console.log(manse + coor + "  ds " + rayon)
-        if(fs.existsSync('./accmwo/'+manse+'.txt'))
+          
+        if(fs.readFileSync("./accmwo/players.txt", 'utf8').includes(manse))
         {
-          name = "**" + manse + "**" + " (" + fs.readFileSync('./accmwo/'+manse+'.txt')+")"
+          var cheli = fs.readFileSync("./accmwo/players.txt", 'utf8')
+          var cheliki = parseInt(cheli.search(manse))
+        var playerc = cheli.substring(cheliki)
+        var playera = playerc.split(" : ")[1]
+        var playerb = playera.toString().split(";")
+          name = "**" + manse + "**" + " (" + playerb[0]+")"
         }  
-        else if(!fs.existsSync('./accmwo/'+manse+'.txt'))
+        else if(!fs.readFileSync("./accmwo/players.txt", 'utf8').includes(manse))
         {
           name = "**" + manse + "**"
         } 
-          
           fs.appendFileSync('./players/players.txt', "**" + id + ".** " + name + " - **[" + rayon + "]**\n")
         }
 
@@ -162,7 +167,7 @@ if(coorx == -431602080 && coory == -431602080)
     .addField(uptima, fs.readFileSync('./players/players.txt', 'utf8') + "\n[View all information](http://haont.ru/mwo/mon)")
 
       message.channel.sendMessage({embed})
-  fs.writeFileSync('./players/players.txt', "")
+      fs.writeFileSync('./players/players.txt', "")
       }
       else
       {
@@ -182,16 +187,36 @@ if(coorx == -431602080 && coory == -431602080)
 if(commandIs("sync", message))
 {
 var player = message.content.substring(8)
-  fs.writeFileSync(`./accmwo/` + player + ".txt", message.author.tag)
+if(fs.readFileSync("./accmwo/players.txt").includes(message.author.tag))
+{
+  message.channel.sendMessage({embed: {
+    color: 16711680,
+    description: "**Вы уже привязали свой аккаунт** "
+    
+    }})
+}
+if(!fs.readFileSync("./accmwo/players.txt").includes(message.author.tag))
+{ 
+  fs.appendFileSync("./accmwo/players.txt", player + " : " + message.author.tag + ";")
   message.channel.sendMessage({embed: {
       color: 6604900,
-      description: "**Аккаунт успешно привязан **" + player
+      description: "**Аккаунт успешно привязан** "
       
       }})
+    }
 }
+if(commandIs("chel", message))
+{
+ var player = message.content.substring(8)
+  var cheli = fs.readFileSync("./accmwo/players.txt", 'utf8')
+  var cheliki = parseInt(cheli.search(player))
+var playerc = cheli.substring(cheliki)
+var playera = playerc.split(" : ")[1]
+var playerb = playera.toString().split(";")
 
+  console.log(playerb[0])
+}
 });
-
 client.login(process.env.BOT_TOKEN);
 
 
