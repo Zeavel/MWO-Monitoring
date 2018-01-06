@@ -1,3 +1,4 @@
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const CC = require('./command_create.js');
@@ -31,7 +32,7 @@ function hasRole(mem, role)
 
 
 client.on('ready', () => {
-    client.user.setGame("Ready")
+    client.user.setActivity("Ready", { type: 1}); // type: 2 - Слушает
 });
 client.setInterval(function play()
 {
@@ -46,8 +47,8 @@ client.setInterval(function play()
   
       var manse = $('h2').text()
 
+client.user.setActivity("at " + manse, { type: 3}); // type: 2 - Слушает
 
-client.user.setGame(manse)
       
     }})
 }, 2500)
@@ -71,14 +72,14 @@ if(commandIs('uptime', message))
 
     //console.log(uptime[1])
     const Discord = require('discord.js');
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
       
 
       .setAuthor("MWO-Monitoring", client.user.displayAvatarURL)
 
       .addField("Server uptime","**" + uptime[1] + "**")
 
-        message.channel.sendMessage({embed})
+        message.channel.send({embed})
       }})
 }
 if(commandIs('players', message))
@@ -159,27 +160,27 @@ if(coorx == -431602080 && coory == -431602080)
 
 
   const Discord = require('discord.js');
-  const embed = new Discord.RichEmbed()
+  const embed = new Discord.MessageEmbed()
     
 
     .setAuthor("MWO-Monitoring", client.user.displayAvatarURL)
 
     .addField(uptima, fs.readFileSync('./players/players.txt', 'utf8') + "\n[View all information](http://haont.ru/mwo/mon)")
 
-      message.channel.sendMessage({embed})
+      message.channel.send({embed})
       fs.writeFileSync('./players/players.txt', "")
       }
       else
       {
         const Discord = require('discord.js');
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
           
       
           .setAuthor("MWO-Monitoring", client.user.displayAvatarURL)
       
           .setDescription("**" + uptimer + "**")
       
-            message.channel.sendMessage({embed})
+            message.channel.send({embed})
       }
 
       }})
@@ -187,20 +188,20 @@ if(coorx == -431602080 && coory == -431602080)
 if(commandIs("sync", message))
 {
 var player = message.content.substring(8)
-if(fs.readFileSync("./accmwo/players.txt").includes(player))
+if(fs.readFileSync("./accmwo/players.txt").includes(message.author.tag))
 {
-  message.channel.sendMessage({embed: {
+  message.channel.send({embed: {
     color: 16711680,
-    description: "**You already linked your account** "
+    description: "**Вы уже привязали свой аккаунт** "
     
     }})
 }
-if(!fs.readFileSync("./accmwo/players.txt").includes(player))
+if(!fs.readFileSync("./accmwo/players.txt").includes(message.author.tag))
 { 
   fs.appendFileSync("./accmwo/players.txt", player + " : " + message.author.tag + ";")
-  message.channel.sendMessage({embed: {
+  message.channel.send({embed: {
       color: 6604900,
-      description: "**Account successfully linked** "
+      description: "**Аккаунт успешно привязан** "
       
       }})
     }
@@ -217,6 +218,8 @@ var playerb = playera.toString().split(";")
   console.log(playerb[0])
 }
 });
+
+
 client.login(process.env.BOT_TOKEN);
 
 
