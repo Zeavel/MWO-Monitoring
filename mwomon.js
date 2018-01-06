@@ -79,13 +79,13 @@ if(commandIs("test", message))
         con.connect(err => {
           if (err) throw(err);
           console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-          con.query(`SELECT * FROM Tag WHERE Nickname = '${player}'`, (err, rows) => {
+          con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, (err, rows) => {
             if(err) throw err;
 
             let sql;
             if(rows.length < 1)
             {
-              sql = `INSERT INTO Tag (Nickname, Tag) VALUES ('${player}', ${message.author.tag})`
+              sql = `INSERT INTO Accounts (Nickname, Tag) VALUES ('${player}', ${message.author.tag})`
             }
             con.query(sql, console.log)
           })
