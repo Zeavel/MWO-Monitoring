@@ -55,8 +55,8 @@ client.setInterval(function play()
         else 
         { statuse = "dnd"}
 client.user.setActivity(manse, { type: 3}); // type: 2 - Слушает
-//client.user.setStatus(status)
-        console.log(numb + " " + statuse)
+client.user.setStatus(statuse)
+        //console.log(numb + " " + statuse)
       
     }})
 }, 2500)
