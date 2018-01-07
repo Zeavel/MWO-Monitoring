@@ -179,7 +179,7 @@ if(coorx == -431602080 && coory == -431602080)
         {
            name = "**" + manse + "**"
         } 
-          fs.appendFileSync('./players/players.txt', "**" + id + ".** " + name + " - **[" + rayon + "]**\n")
+          fs.appendFileSync('./players/players.txt', "**•" + id + ".** " + name + " - **[" + rayon + "]**\n")
         }
 
 
