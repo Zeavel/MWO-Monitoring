@@ -206,7 +206,7 @@ if(coorx == -431602080 && coory == -431602080)
           .setDescription("**" + uptimer + "**")
       
             message.channel.send({embed})
-          console.log(client.user.displayAvatarURL)
+          
       }
 
       }})
