@@ -177,9 +177,9 @@ if(coorx == -431602080 && coory == -431602080)
         }  
         else if(!fs.readFileSync("./accmwo/players.txt", 'utf8').includes(manse))
         {
-          name = "**" + manse + "** "
+           name = "**" + manse + "**"
         } 
-          fs.appendFileSync('./players/players.txt', "• " + name + "(**ID**: " + id + ") - **[" + rayon + "]**" + "\n")
+          fs.appendFileSync('./players/players.txt', "**" + id + ".** " + name + " - **[" + rayon + "]**\n")
         }
 
 
