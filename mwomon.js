@@ -63,34 +63,23 @@ client.user.setStatus(statuse)
 
 client.on('message', message =>
 {
-/*if(commandIs("test", message))
+if(commandIs("test", message))
 {
   var player = message.content.substring(8)
-   var mysql = require('mysql')
-        var coninfo = {
-          host: "sql10.freemysqlhosting.net",
-          user: "sql10214385",
-          password: "hjLYb35UGl",
-          database: "sql10214385"
-        }
-        
-        var con = mysql.createConnection(coninfo);
-        
-        con.connect(err => {
-          if (err) throw(err);
-          console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-          con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, (err, rows) => {
-            if(err) throw err;
+   var pg = require('pg');
 
-            let sql;
-            if(rows.length < 1)
-            {
-              sql = `INSERT INTO Accounts (Nickname, Tag) VALUES ('${player}', ${message.author.tag})`
-            }
-            con.query(sql, console.log)
-          })
-        }) 
-}*/
+app.get('/db', function (request, response) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query('SELECT * FROM test_table', function(err, result) {
+      done();
+      if (err)
+       { console.error(err); response.send("Error " + err); }
+      else
+       { response.render('pages/db', {results: result.rows} ); }
+    });
+  });
+});
+}
 if(commandIs('uptime', message))
 {
     var url = "http://haont.ru/mwo/mon";
