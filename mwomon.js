@@ -99,9 +99,10 @@ if(commandIs('uptime', message))
     const embed = new Discord.MessageEmbed()
       
 
-      .setAuthor("MWO-Monitoring", client.user.avatarURL)
+      .setAuthor("MWO-Monitoring", client.user.displayAvatarURL())
 
       .addField("Server uptime","**" + uptime[1] + "**")
+      .setColor(message.guild.members.get(client.user.id()).displayColor)
 
         message.channel.send({embed})
       }})
@@ -187,8 +188,8 @@ if(coorx == -431602080 && coory == -431602080)
   const embed = new Discord.MessageEmbed()
     
 
-    .setAuthor("MWO-Monitoring", client.user.displayAvatarURL)
-
+    .setAuthor("MWO-Monitoring", client.user.displayAvatarURL())
+    .setColor(message.guild.members.get(client.user.id()).displayColor)
     .addField(uptima, fs.readFileSync('./players/players.txt', 'utf8') + "\n[View all information](http://haont.ru/mwo/mon)")
 
       message.channel.send({embed})
@@ -200,8 +201,8 @@ if(coorx == -431602080 && coory == -431602080)
         const embed = new Discord.MessageEmbed()
           
       
-          .setAuthor("MWO-Monitoring", client.user.displayAvatarURL)
-      
+          .setAuthor("MWO-Monitoring", client.user.displayAvatarURL())
+          .setColor(message.guild.members.get(client.user.id()).displayColor)
           .setDescription("**" + uptimer + "**")
       
             message.channel.send({embed})
