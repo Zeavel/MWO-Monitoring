@@ -73,9 +73,9 @@ app.get('/db', function (request, response) {
     client.query("CREATE TABLE test_table (id INTEGER, name TEXT)", function(err, result) {
       done();
       if (err)
-       { console.error(err); response.send("Error " + err); }
+       { console.error(err); response.send("Error " + err); console.log("true") }
       else
-       { response.render('pages/db', {results: result.rows} ); }
+       { response.render('pages/db', {results: result.rows} ); console.log("false") }
     });
   });
 });
