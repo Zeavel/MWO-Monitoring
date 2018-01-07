@@ -187,7 +187,7 @@ if(coorx == -431602080 && coory == -431602080)
   const embed = new Discord.MessageEmbed()
     
 
-    .setAuthor("MWO-Monitoring", message.guild.members.get(client.user.id).user.displayAvatarURL)
+    .setAuthor("MWO-Monitoring", client.user.displayAvatarURL)
 
     .addField(uptima, fs.readFileSync('./players/players.txt', 'utf8') + "\n[View all information](http://haont.ru/mwo/mon)")
 
@@ -205,6 +205,7 @@ if(coorx == -431602080 && coory == -431602080)
           .setDescription("**" + uptimer + "**")
       
             message.channel.send({embed})
+          console.log(client.user.displayAvatarURL)
       }
 
       }})
