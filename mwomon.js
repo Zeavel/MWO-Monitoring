@@ -99,7 +99,7 @@ if(commandIs('uptime', message))
     const embed = new Discord.MessageEmbed()
       
 
-      .setAuthor("MWO-Monitoring", client.user.avatarURL)
+      .setAuthor("MWO-Monitoring", client.user.displayAvatarURL)
 
       .addField("Server uptime","**" + uptime[1] + "**")
 
