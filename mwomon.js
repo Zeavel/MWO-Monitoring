@@ -266,7 +266,7 @@ if(commandIs("link", message))
   var player = message.content.substring(8)
   if(player == '')
   {
-      message.channel.sendMessage({embed: {
+      message.channel.send({embed: {
         color: 65793,
         description: ":warning: " + "**Please enter a nickname**"
         
@@ -329,7 +329,7 @@ if(commandIs("link", message))
 var player = message.content.substring(10)
 if(player == '')
   {
-      message.channel.sendMessage({embed: {
+      message.channel.send({embed: {
         color: 65793,
         description: ":warning: " + "**Please enter a nickname**"
         
