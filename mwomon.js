@@ -264,6 +264,16 @@ if(coorx == -431602080 && coory == -431602080)
 if(commandIs("link", message))
 {
   var player = message.content.substring(8)
+  if(player == '')
+  {
+      message.channel.sendMessage({embed: {
+        color: 65793,
+        description: ":warning: " + "**Please enter a nickname**"
+        
+        }})
+  }
+  else
+  {
   var mysql = require('mysql')
   var coninfo = {
     host: "sql10.freemysqlhosting.net",
@@ -312,11 +322,21 @@ if(commandIs("link", message))
     
     }})
 }*/
-
+  }
 }
    if(commandIs("unlink", message))
 {
 var player = message.content.substring(10)
+if(player == '')
+  {
+      message.channel.sendMessage({embed: {
+        color: 65793,
+        description: ":warning: " + "**Please enter a nickname**"
+        
+        }})
+  }
+    else
+    {
 var mysql = require('mysql')
 var coninfo = {
   host: "sql10.freemysqlhosting.net",
@@ -376,7 +396,7 @@ con.connect(err => {
     });
 
 })
-
+    }
 }
 if(commandIs("lidsadnk", message))
 {
