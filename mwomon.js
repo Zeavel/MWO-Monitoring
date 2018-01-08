@@ -45,7 +45,7 @@ client.setInterval(function play()
       
       var $ = cheerio.load(body)
   
-      var manse = $('div > #mwo_status_container > h2').text()
+      var manse = $('#mwo_status_container > h2').text()
  var uptimer =  manse.toString().replace(/players online/, '')
  var numb = parseInt(uptimer)
  if(uptimer <= 0)
