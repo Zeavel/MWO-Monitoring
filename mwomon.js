@@ -103,8 +103,8 @@ if(commandIs('uptime', message))
         
         var $ = cheerio.load(body)
     
-        var mans = $('div > #mwo_status_container').text()
-  var uptime =  mans.split(": ")
+        var mans = $('#mwo_status_container').text()
+  var uptime =  mans.split(":")
 
     //console.log(uptime[1])
     const Discord = require('discord.js');
@@ -113,7 +113,7 @@ if(commandIs('uptime', message))
 
       .setAuthor("MWO-Monitoring", client.user.displayAvatarURL())
       .setTitle("Server uptime")
-      .setDescription("**" + uptime[1] + "**")
+      .setDescription("**" + uptime[1].substring(2) + "**")
       //.addField("Server uptime","**" + uptime[1] + "**"))
       .setColor(message.guild.members.get(client.user.id).displayColor)
 
