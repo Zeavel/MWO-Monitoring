@@ -12,7 +12,7 @@ var fs = require("fs");
 
 
 function commandIs(str, msg){
-    return msg.content.toLowerCase().startsWith("mw!" + str);
+    return msg.content.toLowerCase().startsWith("cw!" + str);
 }
 
 function pluck(array) {
@@ -67,19 +67,30 @@ client.on('message', message =>
 if(commandIs("test", message))
 {
   var player = message.content.substring(8)
-   var pg = require('pg');
+  var mysql = require('mysql')
+  var coninfo = {
+    host: "sql10.freemysqlhosting.net",
+    user: "sql10214385",
+    password: "hjLYb35UGl",
+    database: "sql10214385"
+  }
+  
+  var con = mysql.createConnection(coninfo);
+  
+  con.connect(err => {
+    if (err) throw(err);
+    console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
+    //con.query(`INSERT INTO Accounts (Nickname, Tag) VALUES ('${player}', '${message.author.tag}')`)
+  con.query(`DELETE FROM Accounts WHERE Nickname = '${player}'`)
+    /*con.query(`SELECT Tag FROM Accounts`, (error, rows, results) => {
+    
+  console.log(rows)
 
-app.get('/db', function (request, response) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query("CREATE TABLE test_table (id INTEGER, name TEXT)", function(err, result) {
-      done();
-      if (err)
-       { console.error(err); response.send("Error " + err); console.log("true") }
-      else
-       { response.render('pages/db', {results: result.rows} ); console.log("false") }
-    });
-  });
-});
+       // console.log(rows)
+        
+      });*/
+    //con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, console.log)
+  })
 }
 if(commandIs('uptime', message))
 {
@@ -110,15 +121,29 @@ if(commandIs('uptime', message))
 }
 if(commandIs('players', message))
 {
+  fs.writeFileSync('./players/players.txt', "")
     var url = "http://haont.ru/mwo/mon";
     var cheerio = require('cheerio');
     var request = require('request');
-    
+    var mysql = require('mysql')
+          var coninfo = {
+            host: "sql10.freemysqlhosting.net",
+            user: "sql10214385",
+            password: "hjLYb35UGl",
+            database: "sql10214385"
+          }
+          
+          var con = mysql.createConnection(coninfo);
+          
+          con.connect(err => {
+            if (err) throw(err);
+            console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
+            con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
     request(url, function (error, response, body) {
       if (!error) {
        
         var $ = cheerio.load(body)
-        var mans = $('div > #mwo_status_container > h2').text()
+        var mans = $('#mwo_status_container > h2').text()
 
         var uptimer =  mans.split(": ")
         if(uptimer.toString().includes("1"))
@@ -166,36 +191,58 @@ if(coorx == -431602080 && coory == -431602080)
 {
 
 }
-          console.log(manse + coor + "  ds " + rayon)
+
+         console.log(manse + "+")
           
-        if(fs.readFileSync("./accmwo/players.txt", 'utf8').includes(manse))
-        {
-          var cheli = fs.readFileSync("./accmwo/players.txt", 'utf8')
-          var cheliki = parseInt(cheli.search(manse))
-        var playerc = cheli.substring(cheliki)
-        var playera = playerc.split(" : ")[1]
-        var playerb = playera.toString().split(";")
-          name = "**" + manse + "**" + " (" + playerb[0]+")"
-        }  
-        else if(!fs.readFileSync("./accmwo/players.txt", 'utf8').includes(manse))
-        {
-           name = "**" + manse + "**"
-        } 
-          fs.appendFileSync('./players/players.txt', name + " - **[" + rayon + "]**\n")
+         
+            
+           
+            
+           var cheli = rows.map(item => item.Nickname).toString()
+
+           if(!cheli.includes(manse))
+           { 
+             name = "**" + manse + "**"
+           
+           }
+         
+               if(cheli.includes(manse))
+                {
+       
+       var nick = rows.map(item => item.Nickname)
+
+       var oks = nick.indexOf(manse)
+        tag = rows.map(item => item.Tag)[oks]
+                 name = "**" + manse + "**" + " (" + tag+")"
+                
+             
+            
+   
+      
+      
+                }
+                fs.appendFileSync('./players/players.txt', "**" + id + ".** " + name + " - **[" + rayon + "]**\n")
+              
+
+              
+        
+       
+        
         }
 
-
+    
   const Discord = require('discord.js');
   const embed = new Discord.MessageEmbed()
     
 
     .setAuthor("MWO-Monitoring", client.user.displayAvatarURL())
     .setColor(message.guild.members.get(client.user.id).displayColor)
-    .addField(uptima, fs.readFileSync('./players/players.txt', 'utf8') + "\n[View all information](http://haont.ru/mwo/mon)")
+    .addField(uptima, fs.readFileSync('./players/players.txt') + "\n[View all information](http://haont.ru/mwo/mon)")
 
       message.channel.send({embed})
       fs.writeFileSync('./players/players.txt', "")
       }
+      
       else
       {
         const Discord = require('discord.js');
@@ -211,54 +258,125 @@ if(coorx == -431602080 && coory == -431602080)
       }
 
       }})
+    })
+    })
 }
 if(commandIs("link", message))
 {
-var player = message.content.substring(8)
-if(fs.readFileSync("./accmwo/players.txt").includes(player))
+  var player = message.content.substring(8)
+  var mysql = require('mysql')
+  var coninfo = {
+    host: "sql10.freemysqlhosting.net",
+    user: "sql10214385",
+    password: "hjLYb35UGl",
+    database: "sql10214385"
+  }
+  
+  var con = mysql.createConnection(coninfo);
+  
+  con.connect(err => {
+    if (err) throw(err);
+    console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
+
+    
+    con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
+    
+   var cheli = rows.map(item => item.Tag).toString()
+    
+      
+        if(cheli.includes(message.author.tag))
+        {
+          message.channel.send({embed: {
+            color: 16711680,
+            description: "**You already linked your account** "
+            
+            }})
+        }
+        else if(!cheli.includes(message.author.tag))
+        { 
+          con.query(`INSERT INTO Accounts (Nickname, Tag) VALUES ('${player}', '${message.author.tag}')`)
+          message.channel.send({embed: {
+              color: 6604900,
+              description: "**Account successfully linked** "
+              
+              }})
+        }
+      });
+    //con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, console.log)
+  })
+/*if(fs.readFileSync("./accmwo/players.txt").includes(player))
 {
   message.channel.send({embed: {
     color: 16711680,
     description: "**You already linked your account** "
     
     }})
-}
-if(!fs.readFileSync("./accmwo/players.txt").includes(player))
-{ 
-  fs.appendFileSync("./accmwo/players.txt", player + " : " + message.author.tag + ";")
-  message.channel.send({embed: {
-      color: 6604900,
-      description: "**Account successfully linked** "
-      
-      }})
-    }
+}*/
+
 }
    if(commandIs("unlink", message))
 {
 var player = message.content.substring(10)
-
-if(!fs.readFileSync("./accmwo/players.txt").includes(player))
-{ 
-
-  message.channel.send({embed: {
-      color: 16711680 ,
-      description: "**This account does not exist** "
-      
-      }})
-    
+var mysql = require('mysql')
+var coninfo = {
+  host: "sql10.freemysqlhosting.net",
+  user: "sql10214385",
+  password: "hjLYb35UGl",
+  database: "sql10214385"
 }
-if(fs.readFileSync("./accmwo/players.txt").includes(player))
-{
 
-  var unlinkinfo = fs.readFileSync("./accmwo/players.txt").toString().replace(player, "")
-  var unlinkinfa = unlinkinfo.replace(message.author.tag, "")
-  fs.writeFileSync("./accmwo/players.txt", unlinkinfa)
+var con = mysql.createConnection(coninfo);
+
+con.connect(err => {
+  if (err) throw(err);
+  console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
+
+  
+  con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
+  
+ var cheli = rows.map(item => item.Nickname).toString()
+  
+ if(!cheli.includes(player))
+ { 
   message.channel.send({embed: {
-    color: 6604900,
-    description: "**You have successfully unlinked an account** "
+    color: 16711680 ,
+    description: "**This account does not exist** "
     
     }})
-}
+ }
+      if(cheli.includes(player))
+      {
+        
+      con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, (error, rows, results) => { 
+
+        var tag = rows.map(item => item.Tag ).toString()
+
+
+
+        if(tag != message.author.tag)
+        {
+          message.channel.send({embed: {
+            color: 16711680,
+            description: "**You can not delete someone else's accountt** "
+            
+            }})
+        }
+        if(tag == message.author.tag)
+        {
+          con.query(`DELETE FROM Accounts WHERE Nickname = '${player}'`)
+          message.channel.send({embed: {
+            color: 6604900,
+            description: "**You have successfully unlinked an account** "
+            
+            }})
+        }
+      })
+      }
+      
+    });
+
+})
+
 }
 if(commandIs("lidsadnk", message))
 {
