@@ -66,30 +66,19 @@ client.on('message', message =>
 if(commandIs("test", message))
 {
   var player = message.content.substring(8)
-  var mysql = require('mysql')
-  var coninfo = {
-    host: "sql10.freemysqlhosting.net",
-    user: "sql10214385",
-    password: "hjLYb35UGl",
-    database: "sql10214385"
-  }
-  
-  var con = mysql.createConnection(coninfo);
-  
-  con.connect(err => {
-    if (err) throw(err);
-    console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-    //con.query(`INSERT INTO Accounts (Nickname, Tag) VALUES ('${player}', '${message.author.tag}')`)
-  con.query(`DELETE FROM Accounts WHERE Nickname = '${player}'`)
-    /*con.query(`SELECT Tag FROM Accounts`, (error, rows, results) => {
-    
-  console.log(rows)
+   var pg = require('pg');
 
-       // console.log(rows)
-        
-      });*/
-    //con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, console.log)
-  })
+app.get('/db', function (request, response) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query("CREATE TABLE test_table (id INTEGER, name TEXT)", function(err, result) {
+      done();
+      if (err)
+       { console.error(err); response.send("Error " + err); console.log("true") }
+      else
+       { response.render('pages/db', {results: result.rows} ); console.log("false") }
+    });
+  });
+});
 }
 if(commandIs('uptime', message))
 {
@@ -176,51 +165,22 @@ if(coorx == -431602080 && coory == -431602080)
 {
 
 }
-
-          console.log(manse + coor + "  ds " + rayon + " ")
-          var mysql = require('mysql')
-          var coninfo = {
-            host: "sql10.freemysqlhosting.net",
-            user: "sql10214385",
-            password: "hjLYb35UGl",
-            database: "sql10214385"
-          }
+          console.log(manse + coor + "  ds " + rayon)
           
-          var con = mysql.createConnection(coninfo);
-          
-          con.connect(err => {
-            if (err) throw(err);
-            console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-          console.log(manse)
-            
-            con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
-            
-           var cheli = rows.map(item => item.Nickname).toString()
-
-           if(!cheli.includes(manse))
-           { 
-            name = "**" + manse + "**"
-            //console.log("true")
-           }
-               if(cheli.includes(manse))
-                {
-                  console.log("false")
-                con.query(`SELECT * FROM Accounts WHERE Nickname = '${manse}'`, (error, rows, results) => { 
-          
-                  var tag = rows.map(item => item.Tag ).toString()
-          
-          
-          
-                  name = "**" + manse + "**" + " (" + tag+")"
-                })
-                }
-                
-              
-                fs.appendFileSync('./players/players.txt', "**" + id + ".** " + name + " - **[" + rayon + "]**\n")
-        })
-        
-        })
-        
+        if(fs.readFileSync("./accmwo/players.txt", 'utf8').includes(manse))
+        {
+          var cheli = fs.readFileSync("./accmwo/players.txt", 'utf8')
+          var cheliki = parseInt(cheli.search(manse))
+        var playerc = cheli.substring(cheliki)
+        var playera = playerc.split(" : ")[1]
+        var playerb = playera.toString().split(";")
+          name = "**" + manse + "**" + " (" + playerb[0]+")"
+        }  
+        else if(!fs.readFileSync("./accmwo/players.txt", 'utf8').includes(manse))
+        {
+           name = "**" + manse + "**"
+        } 
+          fs.appendFileSync('./players/players.txt', "**" + id + ".** " + name + " - **[" + rayon + "]**\n")
         }
 
 
@@ -235,7 +195,6 @@ if(coorx == -431602080 && coory == -431602080)
       message.channel.send({embed})
       fs.writeFileSync('./players/players.txt', "")
       }
-      
       else
       {
         const Discord = require('discord.js');
@@ -254,120 +213,51 @@ if(coorx == -431602080 && coory == -431602080)
 }
 if(commandIs("link", message))
 {
-  var player = message.content.substring(8)
-  var mysql = require('mysql')
-  var coninfo = {
-    host: "sql10.freemysqlhosting.net",
-    user: "sql10214385",
-    password: "hjLYb35UGl",
-    database: "sql10214385"
-  }
-  
-  var con = mysql.createConnection(coninfo);
-  
-  con.connect(err => {
-    if (err) throw(err);
-    console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-
-    
-    con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
-    
-   var cheli = rows.map(item => item.Tag).toString()
-    
-      
-        if(cheli.includes(message.author.tag))
-        {
-          message.channel.send({embed: {
-            color: 16711680,
-            description: "**You already linked your account** "
-            
-            }})
-        }
-        else if(!cheli.includes(message.author.tag))
-        { 
-          con.query(`INSERT INTO Accounts (Nickname, Tag) VALUES ('${player}', '${message.author.tag}')`)
-          message.channel.send({embed: {
-              color: 6604900,
-              description: "**Account successfully linked** "
-              
-              }})
-        }
-      });
-    //con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, console.log)
-  })
-/*if(fs.readFileSync("./accmwo/players.txt").includes(player))
+var player = message.content.substring(8)
+if(fs.readFileSync("./accmwo/players.txt").includes(player))
 {
   message.channel.send({embed: {
     color: 16711680,
     description: "**You already linked your account** "
     
     }})
-}*/
-
+}
+if(!fs.readFileSync("./accmwo/players.txt").includes(player))
+{ 
+  fs.appendFileSync("./accmwo/players.txt", player + " : " + message.author.tag + ";")
+  message.channel.send({embed: {
+      color: 6604900,
+      description: "**Account successfully linked** "
+      
+      }})
+    }
 }
    if(commandIs("unlink", message))
 {
 var player = message.content.substring(10)
-var mysql = require('mysql')
-var coninfo = {
-  host: "sql10.freemysqlhosting.net",
-  user: "sql10214385",
-  password: "hjLYb35UGl",
-  database: "sql10214385"
-}
 
-var con = mysql.createConnection(coninfo);
+if(!fs.readFileSync("./accmwo/players.txt").includes(player))
+{ 
 
-con.connect(err => {
-  if (err) throw(err);
-  console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-
-  
-  con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
-  
- var cheli = rows.map(item => item.Nickname).toString()
-  
- if(!cheli.includes(player))
- { 
   message.channel.send({embed: {
-    color: 16711680 ,
-    description: "**This account does not exist** "
+      color: 16711680 ,
+      description: "**This account does not exist** "
+      
+      }})
+    
+}
+if(fs.readFileSync("./accmwo/players.txt").includes(player))
+{
+
+  var unlinkinfo = fs.readFileSync("./accmwo/players.txt").toString().replace(player, "")
+  var unlinkinfa = unlinkinfo.replace(message.author.tag, "")
+  fs.writeFileSync("./accmwo/players.txt", unlinkinfa)
+  message.channel.send({embed: {
+    color: 6604900,
+    description: "**You have successfully unlinked an account** "
     
     }})
- }
-      if(cheli.includes(player))
-      {
-        
-      con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, (error, rows, results) => { 
-
-        var tag = rows.map(item => item.Tag ).toString()
-
-
-
-        if(tag != message.author.tag)
-        {
-          message.channel.send({embed: {
-            color: 16711680,
-            description: "**You can not delete someone else's accountt** "
-            
-            }})
-        }
-        if(tag == message.author.tag)
-        {
-          con.query(`DELETE FROM Accounts WHERE Nickname = '${player}'`)
-          message.channel.send({embed: {
-            color: 6604900,
-            description: "**You have successfully unlinked an account** "
-            
-            }})
-        }
-      })
-      }
-      
-    });
-
-})
-
+}
 }
 if(commandIs("lidsadnk", message))
 {
@@ -381,6 +271,7 @@ var playerb = playera.toString().split(";")
   console.log(playerb[0])
 }
 });
+
 
 client.login(process.env.BOT_TOKEN);
 
