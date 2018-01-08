@@ -112,8 +112,9 @@ if(commandIs('uptime', message))
       
 
       .setAuthor("MWO-Monitoring", client.user.displayAvatarURL())
-
-      .addField("Server uptime","**" + uptime[1] + "**")
+      .setTitle("Server uptime")
+      .setDescription("**" + uptime[1] + "**")
+      //.addField("Server uptime","**" + uptime[1] + "**"))
       .setColor(message.guild.members.get(client.user.id).displayColor)
 
         message.channel.send({embed})
