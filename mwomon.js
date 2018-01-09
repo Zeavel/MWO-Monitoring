@@ -323,7 +323,7 @@ if(commandIs("link", message))
             if(!niki.includes(player))
             {
                  
-          con.query(`INSERT INTO Accounts (Nickname, Tag, ID) VALUES ('${player}', '${message.author.tag}')`, '${message.author.id}'))
+          con.query(`INSERT INTO Accounts (Nickname, Tag, ID) VALUES ('${player}', '${message.author.tag}', '${message.author.id}')`)
           message.channel.send({embed: {
               color: 6604900,
               description: "**Account successfully linked** "
