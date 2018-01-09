@@ -299,6 +299,7 @@ if(commandIs("link", message))
     con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
     
    var cheli = rows.map(item => item.Tag).toString()
+   var niki = rows.map(item => item.Nickname).toString()
     
       
         if(cheli.includes(message.author.tag))
@@ -310,13 +311,25 @@ if(commandIs("link", message))
             }})
         }
         else if(!cheli.includes(message.author.tag))
-        { 
-          con.query(`INSERT INTO Accounts (Nickname, Tag) VALUES ('${player}', '${message.author.tag}')`)
+        {
+            if(niki.includes(player))
+            {
+              message.channel.send({embed: {
+            color: 16711680,
+            description: "**Account with such a nickname is already linked** "
+            
+            }}) 
+            }
+            if(!niki.includes(player))
+            {
+                 
+          con.query(`INSERT INTO Accounts (Nickname, Tag, ID) VALUES ('${player}', '${message.author.tag}')`, '${message.author.id}'))
           message.channel.send({embed: {
               color: 6604900,
               description: "**Account successfully linked** "
               
               }})
+            }
         }
       });
     //con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, console.log)
