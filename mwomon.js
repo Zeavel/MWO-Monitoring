@@ -203,8 +203,14 @@ if(coorx == -431602080 && coory == -431602080)
 
            if(!cheli.includes(manse))
            { 
-             name = "**" + manse + "**"
-           
+             if(manse == "Player")
+             {
+              name = "**Anonymous**"   
+             }
+               else
+               {
+              name = "**" + manse + "**"
+               }
            }
          
                if(cheli.includes(manse))
