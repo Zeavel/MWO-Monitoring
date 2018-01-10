@@ -490,7 +490,7 @@ if(commandIs("serverinfo", message))
     .addField('Голосовых каналов', chanelkol, true)
     .setFooter("Для просмотра ролей " + prefix + "roles", 'https://cdn.discordapp.com/attachments/351491707554103297/395563014113329162/-1.gif')
     message.channel.send({ embed })
-    console.log()
+ 
 }
 });
 
