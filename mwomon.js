@@ -470,7 +470,7 @@ if(commandIs("serverinfo", message))
 
 
     .setColor(message.guild.members.get(message.guild.ownerID).displayColor)
-    .setThumbnail(message.guild.iconURL)
+    .setThumbnail(message.guild.iconURL())
 
 
     /*.setThumbnail(message.author.avatarURL)*/
