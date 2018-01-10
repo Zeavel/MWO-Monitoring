@@ -429,6 +429,69 @@ var playerb = playera.toString().split(";")
 
   console.log(playerb[0])
 }
+if(commandIs("serverinfo", message))
+{
+    var month = (new Date(message.guild.createdAt).getMonth() + 1);
+    var day = new Date(message.guild.createdAt).getDate();
+    var year = new Date(message.guild.createdAt).getFullYear();
+    var hours = new Date(message.guild.createdAt).getHours();
+    var minutes = new Date(message.guild.createdAt).getMinutes();
+    var seconds = new Date(message.guild.createdAt).getSeconds();
+    if (hours < 10) {hours = "0"+hours}
+    if (minutes < 10) {minutes = "0"+minutes}
+    if (seconds < 10) {seconds = "0"+seconds}
+    if (month < 10) {month = "0"+month}
+    if (day < 10) {day = "0"+day}
+    if (message.guild.roles.size = 1) { rolet = "Роль"}
+    if (message.guild.roles.size >= 1) { rolet = "Ролей"}
+    var bots = message.guild.members.map(member => member.user.bot).toString()
+    bots = bots.replace(/false/g, '')
+    bots = bots.replace(/,/g, ' ')
+    var cher = bots.split('true')
+    var oks = cher.length - 1
+    var onl = message.guild.members.map(member => member.presence.status).toString()
+    onl = onl.replace(/offline/g, '')
+    onl = onl.replace(/,/g, ' ')
+    onl = onl.replace(/dnd/g, 'online')
+    onl = onl.replace(/idle/g, 'online')
+    var arg = onl.split('online')
+    var online_user = arg.length - 1
+    var chanel = message.guild.channels.map(chanel => chanel.type).toString()
+    chanel = chanel.replace(/text/g, '')
+    chanel = chanel.replace(/,/g, ' ')
+    var argc = chanel.split('voice')
+    var chanelkol = argc.length - 1
+
+    
+    
+
+    const Discord = require('discord.js');
+    const embed = new Discord.MessageEmbed()
+
+
+    .setColor(message.guild.members.get(message.guild.ownerID).displayColor)
+    .setThumbnail(message.guild.iconURL)
+
+
+    /*.setThumbnail(message.author.avatarURL)*/
+    .addField("Название сервера", message.guild.name, true)
+    
+    .addField("Владелец сервера", message.guild.owner.user.tag, true)
+    .addField('ID', message.guild.id, true)
+
+    .addField('Создан', year + "-"+month+"-"+day+ " " + hours+":"+minutes+":"+seconds, true)
+    .addField('Регион', message.guild.region, true)
+    .addField(rolet,(parseInt(message.guild.roles.size) - 1), true)
+    .addField('Участников', message.guild.members.size - oks, true)
+    .addField('В сети', online_user,true)
+    .addField('Ботов', oks, true)  
+    .addField('Каналов', message.guild.channels.size, true )
+    .addField('Текстовых каналов', message.guild.channels.size - chanelkol, true)
+    .addField('Голосовых каналов', chanelkol, true)
+    .setFooter("Для просмотра ролей " + prefix + "roles", 'https://cdn.discordapp.com/attachments/351491707554103297/395563014113329162/-1.gif')
+    message.channel.send({ embed })
+    console.log()
+}
 });
 
 client.login(process.env.BOT_TOKEN);
