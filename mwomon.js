@@ -431,6 +431,7 @@ var playerb = playera.toString().split(";")
 }
 if(commandIs("serverinfo", message))
 {
+    console.log("test")
     var month = (new Date(message.guild.createdAt).getMonth() + 1);
     var day = new Date(message.guild.createdAt).getDate();
     var year = new Date(message.guild.createdAt).getFullYear();
