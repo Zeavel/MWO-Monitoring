@@ -188,9 +188,13 @@ if(coorx > 2700 && coory > -2000)
 {
   rayon = "Camden"
 }
-if(coorx == -431602080 && coory == -431602080)
+if((coorx < -732 && -3294 < coory) && (coorx < -732 &&  coory < -2265))
 {
-
+  rayon = "Rosewood, Old Bridge"
+}
+if((coorx > -166 && coory < -3082) && (coorx < 188 &&  coory > -3267))
+{
+  rayon = "Rosewood, Stadium (Hickey Field)"
 }
 
          console.log(manse + "+")
