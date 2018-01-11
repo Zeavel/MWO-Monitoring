@@ -272,7 +272,7 @@ if((coorx > -166 && coory < -3082) && (coorx < 188 &&  coory > -3267))
     })
     })
 }
-if(commandIs("link", message))
+if(commandIs("link ", message))
 {
   var player = message.content.substring(8)
   if(player == '')
@@ -497,6 +497,126 @@ if(commandIs("serverinfo", message))
     message.channel.send({ embed })
  
 }
+    if(commandIs("linkuser", message))
+{
+  console.log("test")
+var tekst = message.content.substring(12)
+var tekst2 = tekst.split(" | ")
+var nickname = tekst2[0]
+var player = tekst2[1]
+var spliter = " | "
+console.log(nickname + " " + player)
+if(tekst == '')
+{
+    message.channel.send({embed: {
+      color: 65793,
+      description: ":warning: " + "**Please enter a nickname**"
+      
+      }})
+}
+else
+{
+
+
+if(player.includes("<@"))
+{
+    
+    var ids = message.content.substring(12 + nickname.length + spliter.length + 2)
+    ids = ids.toString().replace(/[!>]/g, '')
+    founduser = message.guild.members.get(ids)
+
+
+}
+else
+{
+    founduser = message.guild.members.filter(m => m.user.username.toLowerCase().startsWith(player.toLowerCase())).first()
+}
+        
+        
+        var res = message.guild.members.map(member => member.user.username.toString())
+       // console.log(message.content.substring(kolva + 1))
+        
+if(founduser == null) { message.channel.sendMessage( "Такого пользователя не существует")}
+else{ 
+        //if(che == null) {message.channel.sendMessage("Такого пользователя нет")}
+        if(message.content.substring(12 + nickname.length + spliter.length) == '')
+        {
+            
+            nick = message.author.username
+        }
+        else if(message.content.substring(12 + nickname.length) == '' )
+        {
+          nick = message.author.username
+        }
+
+            else
+            {
+                
+   
+            nick = founduser.user.username
+    
+            }
+
+   
+            
+      
+          che = message.guild.client.users.find("username", nick).toString()
+            chr = message.guild.client.users.find(nick => che.includes(nick)).id
+            tag = message.guild.client.users.get(chr).tag
+           
+  
+  var mysql = require('mysql')
+  var coninfo = {
+    host: "sql10.freemysqlhosting.net",
+    user: "sql10214385",
+    password: "hjLYb35UGl",
+    database: "sql10214385"
+  }
+  
+  var con = mysql.createConnection(coninfo);
+  
+  con.connect(err => {
+    if (err) throw(err);
+    console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
+
+    
+    con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
+    
+   var cheli = rows.map(item => item.Tag).toString()
+    
+      
+        if(cheli.includes(tag))
+        {
+          message.channel.send({embed: {
+            color: 16711680,
+            description: "**This account already linked** "
+            
+            }})
+        }
+        else if(!cheli.includes(tag))
+        { 
+          con.query(`INSERT INTO Accounts (Nickname, Tag, ID) VALUES ('${nickname}', '${tag}', '${chr}')`)
+          message.channel.send({embed: {
+              color: 6604900,
+              description: "**Account successfully linked** "
+              
+              }})
+        }
+      });
+    //con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, console.log)
+  })
+/*if(fs.readFileSync("./accmwo/players.txt").includes(player))
+{
+  message.channel.send({embed: {
+    color: 16711680,
+    description: "**You already linked your account** "
+    
+    }})
+}*/
+  }
+          }
+          
+        }       
 });
 
 client.login(process.env.BOT_TOKEN);
