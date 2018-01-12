@@ -388,11 +388,23 @@ con.connect(err => {
 
         if(tag != message.author.tag)
         {
+          if(message.author.id != message.guild.id && message.author.id != '239837213834215434')
+          {
           message.channel.send({embed: {
             color: 16711680,
             description: "**You can not delete someone else's accountt** "
             
             }})
+          }
+            else
+            {
+                 con.query(`DELETE FROM Accounts WHERE Nickname = '${player}'`)
+          message.channel.send({embed: {
+            color: 6604900,
+            description: "**You have successfully unlinked an account** "
+            
+            }})
+            }
         }
         if(tag == message.author.tag)
         {
