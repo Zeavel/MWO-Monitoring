@@ -274,7 +274,7 @@ if((coorx > -166 && coory < -3082) && (coorx < 188 &&  coory > -3267))
     })
     })
 }
-if(commandIs("link", message))
+if(commandIs("link ", message))
 {
   var player = message.content.substring(8)
   if(player == '')
@@ -411,7 +411,7 @@ con.connect(err => {
 })
     }
 }
-if(commandIs("lidsadnk", message))
+if(commandIs("lifggnk", message))
 {
  var player = message.content.substring(8)
   var cheli = fs.readFileSync("./accmwo/players.txt", 'utf8')
@@ -484,7 +484,7 @@ if(commandIs("serverinfo", message))
     message.channel.send({embed})
  
 }
-if(commandIs("linkufffser", message))
+if(commandIs("linkuser", message))
 {
   if(message.author.id != message.guild.id && message.author.id != '239837213834215434')
   {
