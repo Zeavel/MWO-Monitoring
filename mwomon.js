@@ -274,142 +274,8 @@ if((coorx > -166 && coory < -3082) && (coorx < 188 &&  coory > -3267))
     })
     })
 }
-if(commandIs("link", message))
+if(commandIs("link ", message))
 {
-  if(message.content.startsWith("mw!linkuser"))
-     {
-     if(message.author.id != message.guild.id && message.author.id != '239837213834215434')
-  {
-    message.channel.send({embed: {
-      color: 16711680,
-      description: "**You do not have access to use this command** "
-      
-      }})
-   
-  }
-  else
-  {
-  console.log("test")
-var tekst = message.content.substring(12)
-var tekst2 = tekst.split(" | ")
-var nickname = tekst2[0]
-var playere = tekst2[1]
-var spliter = " | "
-console.log(nickname + " " + playere)
-if(tekst == '')
-{
-    message.channel.send({embed: {
-      color: 65793,
-      description: ":warning: " + "**Please enter a nickname**"
-      
-      }})
-}
-else
-{
-
-
-if(player.includes("<@"))
-{
-    
-    var ids = message.content.substring(12 + nickname.length + spliter.length + 2)
-    ids = ids.toString().replace(/[!>]/g, '')
-    founduser = message.guild.members.get(ids)
-
-
-}
-else
-{
-    founduser = message.guild.members.filter(m => m.user.username.toLowerCase().startsWith(playere.toLowerCase())).first()
-}
-        
-        
-        var res = message.guild.members.map(member => member.user.username.toString())
-       // console.log(message.content.substring(kolva + 1))
-        
-if(founduser == null) { message.channel.send( "Такого пользователя не существует")}
-else{ 
-        //if(che == null) {message.channel.sendMessage("Такого пользователя нет")}
-        if(message.content.substring(12 + nickname.length + 2) == ' ')
-        {
-            
-            nick = message.author.username
-        }
-      if(message.content.substring(12 + nickname.length) == ' ' )
-        {
-          nick = message.author.username
-        }
-
-            else
-            {
-                
-   
-            nick = founduser.user.username
-    
-            }
-
-   
-            
-      
-          che = message.guild.client.users.find("username", nick).toString()
-            chr = message.guild.client.users.find(nick => che.includes(nick)).id
-            tag = message.guild.client.users.get(chr).tag
-           
-  
-  var mysql = require('mysql')
-  var coninfo = {
-    host: "sql10.freemysqlhosting.net",
-    user: "sql10214385",
-    password: "hjLYb35UGl",
-    database: "sql10214385"
-  }
-  
-  var con = mysql.createConnection(coninfo);
-  
-  con.connect(err => {
-    if (err) throw(err);
-    console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-
-    
-    con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
-    
-   var cheli = rows.map(item => item.Tag).toString()
-    
-      
-        if(cheli.includes(tag))
-        {
-          message.channel.send({embed: {
-            color: 16711680,
-            description: "**This account already linked** "
-            
-            }})
-        }
-        else if(!cheli.includes(tag))
-        { 
-          con.query(`INSERT INTO Accounts (Nickname, Tag, ID) VALUES ('${nickname}', '${tag}', '${chr}')`)
-          message.channel.send({embed: {
-              color: 6604900,
-              description: "**Account successfully linked** "
-              
-              }})
-        }
-      });
-    //con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, console.log)
-  })
-/*if(fs.readFileSync("./accmwo/players.txt").includes(player))
-{
-  message.channel.send({embed: {
-    color: 16711680,
-    description: "**You already linked your account** "
-    
-    }})
-}*/
-  }
-          }
-          
-        }    
-     }
-    else
-    {
   var player = message.content.substring(8)
   if(player == '')
   {
@@ -470,7 +336,6 @@ else{
     }})
 }*/
   }
-    }
 }
    if(commandIs("unlink", message))
 {
@@ -523,23 +388,11 @@ con.connect(err => {
 
         if(tag != message.author.tag)
         {
-          if(message.author.id != message.guild.id && message.author.id != '239837213834215434')
-          {
           message.channel.send({embed: {
             color: 16711680,
             description: "**You can not delete someone else's accountt** "
             
             }})
-          }
-            else
-            {
-                 con.query(`DELETE FROM Accounts WHERE Nickname = '${player}'`)
-          message.channel.send({embed: {
-            color: 6604900,
-            description: "**You have successfully unlinked an account** "
-            
-            }})
-            }
         }
         if(tag == message.author.tag)
         {
@@ -558,7 +411,7 @@ con.connect(err => {
 })
     }
 }
-if(commandIs("lifggnk", message))
+if(commandIs("lidsadnk", message))
 {
  var player = message.content.substring(8)
   var cheli = fs.readFileSync("./accmwo/players.txt", 'utf8')
@@ -631,7 +484,7 @@ if(commandIs("serverinfo", message))
     message.channel.send({embed})
  
 }
-if(commandIs("linresrserkuser", message))
+if(commandIs("linkuser", message))
 {
   if(message.author.id != message.guild.id && message.author.id != '239837213834215434')
   {
@@ -896,6 +749,7 @@ else{
         }       
  }
 });
+
 client.login(process.env.BOT_TOKEN);
 
 
