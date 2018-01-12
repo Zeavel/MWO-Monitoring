@@ -205,6 +205,14 @@ if((coorx > 652 && coory < 1000 )&&(coorx < 1115 && coory > 675))
 {
   rayon = "Rockport, Stadium (Riverfront)"
 }
+if((coorx > 600 && coory < -3161)&&(coorx < 1257 && coory > -3797))
+{
+  rayon = "Rosewood, College"
+}
+if((coorx > 1000 && coory < -2583)&&(coorx < 1528 && coory > -2955))
+{
+  rayon = "Rosewood, College Hospital"
+}
 
          console.log(manse + "+")
           
