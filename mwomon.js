@@ -12,7 +12,7 @@ var fs = require("fs");
 
 
 function commandIs(str, msg){
-    return msg.content.toLowerCase().startsWith("mw!" + str);
+    return msg.content.toLowerCase().startsWith("cw!" + str);
 }
 
 function pluck(array) {
@@ -85,7 +85,6 @@ if(commandIs("test", message))
     /*con.query(`SELECT Tag FROM Accounts`, (error, rows, results) => {
     
   console.log(rows)
-
        // console.log(rows)
         
       });*/
@@ -174,7 +173,9 @@ var coory = parseInt(cooryy.substring(3))
 var coorz = parseInt(coorzz.substring(3))
 if((coorx < 2700 && -2000 < coory < -2300) || (coorx < 2770 && coory < -1620) || (coorx < 2770 && coory < -1320) || (coorx < 2770 && coory < -1104) || (coorx < 2770 && coory < -1300))
 {
+  
   rayon = "Rosewood"
+
 }
 if((coory > -613 && coorx < 2700) || (coorx < 2565 && coory > -1000))
 {
@@ -200,32 +201,33 @@ if((coorx > -166 && coory < -3082) && (coorx < 188 &&  coory > -3267))
          console.log(manse + "+")
           
          
-            
+         //con.query(`INSERT INTO Accounts (ID) VALUES (335430051086598146, 177710361439371264, 261150378345758723, 239837213834215434, 292602210620014592`)
            
             
            var cheli = rows.map(item => item.Nickname).toString()
 
            if(!cheli.includes(manse))
            { 
-             if(manse == "Player")
-             {
-              name = "**Anonymous**"   
-             }
-               else
-               {
-              name = "**" + manse + "**"
-               }
+             name = "**" + manse + "**"
+           
            }
          
                if(cheli.includes(manse))
                 {
-       
+    
        var nick = rows.map(item => item.Nickname)
-
+       var ide = rows.map(item => item.ID)
        var oks = nick.indexOf(manse)
+       var nicka = nick[oks].toString()
+
+       var ida = ide[oks]
+
+       
+
         tag = rows.map(item => item.Tag)[oks]
                  name = "**" + manse + "**" + " (" + tag+")"
-                
+
+       
              
             
    
@@ -303,7 +305,6 @@ if(commandIs("link ", message))
     con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
     
    var cheli = rows.map(item => item.Tag).toString()
-   var niki = rows.map(item => item.Nickname).toString()
     
       
         if(cheli.includes(message.author.tag))
@@ -315,25 +316,13 @@ if(commandIs("link ", message))
             }})
         }
         else if(!cheli.includes(message.author.tag))
-        {
-            if(niki.includes(player))
-            {
-              message.channel.send({embed: {
-            color: 16711680,
-            description: "**Account with such a nickname is already linked** "
-            
-            }}) 
-            }
-            if(!niki.includes(player))
-            {
-                 
-          con.query(`INSERT INTO Accounts (Nickname, Tag, ID) VALUES ('${player}', '${message.author.tag}', '${message.author.id}')`)
+        { 
+          con.query(`INSERT INTO Accounts (Nickname, Tag, ID) VALUES ('${player}', '${message.author.tag}', '${message.author.id})`)
           message.channel.send({embed: {
               color: 6604900,
               description: "**Account successfully linked** "
               
               }})
-            }
         }
       });
     //con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, console.log)
@@ -469,10 +458,8 @@ if(commandIs("serverinfo", message))
 
     
     
-
     const Discord = require('discord.js');
     const embed = new Discord.MessageEmbed()
-
 
     .setColor(message.guild.members.get(message.guild.ownerID).displayColor)
     .setThumbnail(message.guild.iconURL())
@@ -494,11 +481,22 @@ if(commandIs("serverinfo", message))
     .addField('Текстовых каналов', message.guild.channels.size - chanelkol, true)
     .addField('Голосовых каналов', chanelkol, true)
     .setFooter("Для просмотра ролей " + prefix + "roles", 'https://cdn.discordapp.com/attachments/351491707554103297/395563014113329162/-1.gif')
-    message.channel.send({ embed })
+    message.channel.send({embed})
  
 }
-    if(commandIs("linkuser", message))
+if(commandIs("linkuser", message))
 {
+  if(message.author.id != message.guild.id && message.author.id != '239837213834215434')
+  {
+    message.channel.send({embed: {
+      color: 16711680,
+      description: "**You do not have access to use this command** "
+      
+      }})
+   
+  }
+  else
+  {
   console.log("test")
 var tekst = message.content.substring(12)
 var tekst2 = tekst.split(" | ")
@@ -539,12 +537,12 @@ else
 if(founduser == null) { message.channel.sendMessage( "Такого пользователя не существует")}
 else{ 
         //if(che == null) {message.channel.sendMessage("Такого пользователя нет")}
-        if(message.content.substring(12 + nickname.length + spliter.length) == '')
+        if(message.content.substring(12 + nickname.length + 2) == ' ')
         {
             
             nick = message.author.username
         }
-        else if(message.content.substring(12 + nickname.length) == '' )
+      if(message.content.substring(12 + nickname.length) == ' ' )
         {
           nick = message.author.username
         }
@@ -617,8 +615,140 @@ else{
           }
           
         }       
-});
+ }
+ if(commandIs("lifsdfsdfdsnkuser", message))
+{
+  if(message.author.id != message.guild.id && message.author.id != '239837213834215434')
+  {
+    message.channel.send({embed: {
+      color: 16711680,
+      description: "**You do not have access to use this command** "
+      
+      }})
+   
+  }
+  else
+  {
+  console.log("test")
+var tekst = message.content.substring(12)
+var tekst2 = tekst.split(" | ")
+var nickname = tekst2[0]
+var player = tekst2[1]
+var spliter = " | "
+console.log(nickname + " " + player)
+if(tekst == '')
+{
+    message.channel.send({embed: {
+      color: 65793,
+      description: ":warning: " + "**Please enter a nickname**"
+      
+      }})
+}
+else
+{
 
+
+if(player.includes("<@"))
+{
+    
+    var ids = message.content.substring(12 + nickname.length + spliter.length + 2)
+    ids = ids.toString().replace(/[!>]/g, '')
+    founduser = message.guild.members.get(ids)
+
+
+}
+else
+{
+    founduser = message.guild.members.filter(m => m.user.username.toLowerCase().startsWith(player.toLowerCase())).first()
+}
+        
+        
+        var res = message.guild.members.map(member => member.user.username.toString())
+       // console.log(message.content.substring(kolva + 1))
+        
+if(founduser == null) { message.channel.sendMessage( "Такого пользователя не существует")}
+else{ 
+        //if(che == null) {message.channel.sendMessage("Такого пользователя нет")}
+        if(message.content.substring(12 + nickname.length + 2) == ' ')
+        {
+            
+            nick = message.author.username
+        }
+      if(message.content.substring(12 + nickname.length) == ' ' )
+        {
+          nick = message.author.username
+        }
+
+            else
+            {
+                
+   
+            nick = founduser.user.username
+    
+            }
+
+   
+            
+      
+          che = message.guild.client.users.find("username", nick).toString()
+            chr = message.guild.client.users.find(nick => che.includes(nick)).id
+            tag = message.guild.client.users.get(chr).tag
+           
+  
+  var mysql = require('mysql')
+  var coninfo = {
+    host: "sql10.freemysqlhosting.net",
+    user: "sql10214385",
+    password: "hjLYb35UGl",
+    database: "sql10214385"
+  }
+  
+  var con = mysql.createConnection(coninfo);
+  
+  con.connect(err => {
+    if (err) throw(err);
+    console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
+
+    
+    con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
+    
+   var cheli = rows.map(item => item.Tag).toString()
+    
+      
+        if(cheli.includes(tag))
+        {
+          message.channel.send({embed: {
+            color: 16711680,
+            description: "**This account already linked** "
+            
+            }})
+        }
+        else if(!cheli.includes(tag))
+        { 
+          con.query(`INSERT INTO Accounts (Nickname, Tag, ID) VALUES ('${nickname}', '${tag}', '${chr}')`)
+          message.channel.send({embed: {
+              color: 6604900,
+              description: "**Account successfully linked** "
+              
+              }})
+        }
+      });
+    //con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, console.log)
+  })
+/*if(fs.readFileSync("./accmwo/players.txt").includes(player))
+{
+  message.channel.send({embed: {
+    color: 16711680,
+    description: "**You already linked your account** "
+    
+    }})
+}*/
+  }
+          }
+          
+        }       
+ }
+});
 client.login(process.env.BOT_TOKEN);
 
 
