@@ -276,7 +276,7 @@ if((coorx > -166 && coory < -3082) && (coorx < 188 &&  coory > -3267))
 }
 if(commandIs("link", message))
 {
-  if(message.content.startsWith("linkuser")
+  if(message.content.startsWith("mw!linkuser"))
      {
      if(message.author.id != message.guild.id && message.author.id != '239837213834215434')
   {
