@@ -122,10 +122,10 @@ if(commandIs('uptime', message))
 if(commandIs('players', message))
 {
   fs.writeFileSync('./players/players.txt', "")
-    var url = "http://haont.ru/mwo/mon";
+   // var url = "http://haont.ru/mwo/mon";
     var cheerio = require('cheerio');
     var request = require('request');
-    var mysql = require('mysql')
+   /* var mysql = require('mysql')
           var coninfo = {
             host: "sql10.freemysqlhosting.net",
             user: "sql10214385",
@@ -138,7 +138,7 @@ if(commandIs('players', message))
           con.connect(err => {
             if (err) throw(err);
             console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-            con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
+            con.query(`SELECT * FROM Accounts`, (error, rows, results) => {*/
     request(url, function (error, response, body) {
       if (!error) {
        
@@ -220,7 +220,7 @@ if((coorx > 1000 && coory < -2583)&&(coorx < 1528 && coory > -2955))
          //con.query(`INSERT INTO Accounts (ID) VALUES (335430051086598146, 177710361439371264, 261150378345758723, 239837213834215434, 292602210620014592`)
            
             
-           var cheli = rows.map(item => item.Nickname).toString()
+          // var cheli = rows.map(item => item.Nickname).toString()
 
           // if(!cheli.includes(manse))
          //  { 
@@ -288,7 +288,7 @@ if((coorx > 1000 && coory < -2583)&&(coorx < 1528 && coory > -2955))
 
       }})
     })
-    })
+    //})
 }
 if(commandIs("link", message))
 {
