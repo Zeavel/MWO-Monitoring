@@ -222,26 +222,26 @@ if((coorx > 1000 && coory < -2583)&&(coorx < 1528 && coory > -2955))
             
            var cheli = rows.map(item => item.Nickname).toString()
 
-           if(!cheli.includes(manse))
-           { 
+          // if(!cheli.includes(manse))
+         //  { 
              name = "**" + manse + "**"
            
-           }
+           //}
          
-               if(cheli.includes(manse))
-                {
+             //  if(cheli.includes(manse))
+               // {
     
-       var nick = rows.map(item => item.Nickname)
-       var ide = rows.map(item => item.ID)
-       var oks = nick.indexOf(manse)
-       var nicka = nick[oks].toString()
+     //  var nick = rows.map(item => item.Nickname)
+     //  var ide = rows.map(item => item.ID)
+     //  var oks = nick.indexOf(manse)
+     //  var nicka = nick[oks].toString()
 
-       var ida = ide[oks]
+     //  var ida = ide[oks]
 
        
 
-        tag = rows.map(item => item.Tag)[oks]
-                 name = "**" + manse + "**" + " (" + tag+")"
+       // tag = rows.map(item => item.Tag)[oks]
+               //  name = "**" + manse + "**" + " (" + tag+")"
 
        
              
@@ -249,7 +249,7 @@ if((coorx > 1000 && coory < -2583)&&(coorx < 1528 && coory > -2955))
    
       
       
-                }
+              //  }
                 fs.appendFileSync('./players/players.txt', name + " - **[" + rayon + "]**\n")
               
 
