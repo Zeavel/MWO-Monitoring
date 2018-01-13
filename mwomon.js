@@ -1,5 +1,4 @@
 
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const CC = require('./command_create.js');
@@ -12,7 +11,7 @@ var fs = require("fs");
 
 
 function commandIs(str, msg){
-    return msg.content.toLowerCase().startsWith("mw!" + str);
+    return msg.content.toLowerCase().startsWith("cw!" + str);
 }
 
 function pluck(array) {
@@ -122,23 +121,23 @@ if(commandIs('uptime', message))
 if(commandIs('players', message))
 {
   fs.writeFileSync('./players/players.txt', "")
-   // var url = "http://haont.ru/mwo/mon";
+    var url = "http://haont.ru/mwo/mon";
     var cheerio = require('cheerio');
     var request = require('request');
-   /* var mysql = require('mysql')
-          var coninfo = {
-            host: "sql10.freemysqlhosting.net",
-            user: "sql10214385",
-            password: "hjLYb35UGl",
-            database: "sql10214385"
-          }
+   // var mysql = require('mysql')
+         // var coninfo = {
+          //  host: "sql10.freemysqlhosting.net",
+          //  user: "sql10214385",
+          //  password: "hjLYb35UGl",
+          //  database: "sql10214385"
+         // }
           
-          var con = mysql.createConnection(coninfo);
+         // var con = mysql.createConnection(coninfo);
           
-          con.connect(err => {
+         // con.connect(err => {
             if (err) throw(err);
-            console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-            con.query(`SELECT * FROM Accounts`, (error, rows, results) => {*/
+           // console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
+           // con.query(`SELECT * FROM Accounts`, (error, rows, results) => {
     request(url, function (error, response, body) {
       if (!error) {
        
@@ -220,28 +219,28 @@ if((coorx > 1000 && coory < -2583)&&(coorx < 1528 && coory > -2955))
          //con.query(`INSERT INTO Accounts (ID) VALUES (335430051086598146, 177710361439371264, 261150378345758723, 239837213834215434, 292602210620014592`)
            
             
-          // var cheli = rows.map(item => item.Nickname).toString()
+         //  var cheli = rows.map(item => item.Nickname).toString()
 
-          // if(!cheli.includes(manse))
-         //  { 
+         //  if(!cheli.includes(manse))
+          // { 
              name = "**" + manse + "**"
            
-           //}
+         //  }
          
-             //  if(cheli.includes(manse))
-               // {
+               /*if(cheli.includes(manse))
+                {
     
-     //  var nick = rows.map(item => item.Nickname)
-     //  var ide = rows.map(item => item.ID)
-     //  var oks = nick.indexOf(manse)
-     //  var nicka = nick[oks].toString()
+       var nick = rows.map(item => item.Nickname)
+       var ide = rows.map(item => item.ID)
+       var oks = nick.indexOf(manse)
+       var nicka = nick[oks].toString()
 
-     //  var ida = ide[oks]
+       var ida = ide[oks]
 
        
 
-       // tag = rows.map(item => item.Tag)[oks]
-               //  name = "**" + manse + "**" + " (" + tag+")"
+        tag = rows.map(item => item.Tag)[oks]
+                 name = "**" + manse + "**" + " (" + tag+")"
 
        
              
@@ -249,7 +248,7 @@ if((coorx > 1000 && coory < -2583)&&(coorx < 1528 && coory > -2955))
    
       
       
-              //  }
+                }*/
                 fs.appendFileSync('./players/players.txt', name + " - **[" + rayon + "]**\n")
               
 
@@ -287,8 +286,8 @@ if((coorx > 1000 && coory < -2583)&&(coorx < 1528 && coory > -2955))
       }
 
       }})
-    })
     //})
+   // })
 }
 if(commandIs("link", message))
 {
@@ -502,6 +501,7 @@ if(commandIs("serverinfo", message))
 }
 
 });
+
 
 client.login(process.env.BOT_TOKEN);
 
