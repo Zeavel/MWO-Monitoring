@@ -30,7 +30,6 @@ function hasRole(mem, role)
     }
 }
 
-
 client.on('ready', () => {
     client.user.setActivity("Ready", { type: 1}); // type: 2 - Слушает
 });
@@ -54,12 +53,55 @@ client.setInterval(function play()
         { statuse = "online"}
         else 
         { statuse = "dnd"}
+        if(client.user.presence.activity != null)
+        {
+          if(client.user.presence.activity.name.includes("player"))
+          {
+            var gama = client.user.presence.activity.name
+            var sta = gama.replace(/players online/, '')
+            var ches = parseInt(sta)
+            console.log(ches)
+          }
+
+        }
 client.user.setActivity(manse, { type: 3}); // type: 2 - Слушает
 client.user.setStatus(statuse)
+
         //console.log(numb + " " + statuse)
       
     }})
 }, 2500)
+/*client.setInterval(function game()
+{
+  var urle = "http://haont.ru/mwo/mon";
+  var cheerio = require('cheerio');
+  var request = require('request');
+  
+  request(urle, function (error, response, body) {
+    if (!error) {
+      
+      var $ = cheerio.load(body)
+  
+      var manse = $('div > #mwo_status_container > h2').text()
+ var uptimer =  manse.toString().replace(/players online/, '')
+ var numb = parseInt(uptimer)
+       if(client.user.presence.activity == null)
+        {
+         
+            console.log("false")
+          
+
+        }
+        else
+        {
+          var gama = client.user.presence.activity.name
+          // var sta = gama.replace(/players online/, '')
+           //var ches = parseInt(sta)
+           console.log(gama)
+        }
+      
+    }})
+}, 2500)*/
 
 client.on('message', message =>
 {
@@ -394,7 +436,43 @@ var playerb = playera.toString().split(";")
   console.log(playerb[0])
 }
 if(commandIs("serverinfo", message))
-{
+{var urle = "http://haont.ru/mwo/mon";
+var cheerio = require('cheerio');
+var request = require('request');
+
+request(urle, function (error, response, body) {
+  if (!error) {
+    
+    var $ = cheerio.load(body)
+
+    var mans = $('#mwo_status_container').text()
+    var uptime =  mans.split(":")
+    var manse = $('div > #mwo_status_container > h2').text()
+var uptimer =  manse.toString().replace(/players online/, '')
+var numb = parseInt(uptimer)
+if(uptimer <= 0)
+{ statuse = "idle"}
+      else if(uptimer >= 1 && uptimer <= 5)
+      { statuse = "online"}
+      else 
+      { statuse = "dnd"}
+      if(client.user.presence.activity != null)
+      {
+        if(client.user.presence.activity.name.includes("player"))
+        {
+          var gama = client.user.presence.activity.name
+          var sta = gama.replace(/players online/, '')
+          var ches = parseInt(sta)
+          console.log(ches)
+        }
+
+      }
+client.user.setActivity(manse, { type: 3}); // type: 2 - Слушает
+client.user.setStatus(statuse)
+
+      //console.log(numb + " " + statuse)
+    
+
     console.log("test")
     var month = (new Date(message.guild.createdAt).getMonth() + 1);
     var day = new Date(message.guild.createdAt).getDate();
@@ -428,35 +506,83 @@ if(commandIs("serverinfo", message))
     var chanelkol = argc.length - 1
 
     
-    
+if(message.channel.name == "online_ru" || message.channel.name == "general_ru" || message.channel.name == "help_ru" || message.channel.name == "flood_ru" || message.channel.name == "nsfw_ru")
+{
+  
     const Discord = require('discord.js');
     const embed = new Discord.MessageEmbed()
 
-    .setColor(message.guild.members.get(message.guild.ownerID).displayColor)
+    .setColor(message.guild.members.get(client.user.id).displayColor)
     .setThumbnail(message.guild.iconURL())
 
-
+    .setAuthor(message.guild.name, message.guild.iconURL())
     /*.setThumbnail(message.author.avatarURL)*/
-    .addField("Название сервера", message.guild.name, true)
+
     
-    .addField("Владелец сервера", message.guild.owner.user.tag, true)
+    .addField("Владелец сервера", "<@" + message.guild.ownerID + ">", true)
     .addField('ID', message.guild.id, true)
 
     .addField('Создан', year + "-"+month+"-"+day+ " " + hours+":"+minutes+":"+seconds, true)
     .addField('Регион', message.guild.region, true)
-    .addField(rolet,(parseInt(message.guild.roles.size) - 1), true)
-    .addField('Участников', message.guild.members.size - oks, true)
-    .addField('В сети', online_user,true)
-    .addField('Ботов', oks, true)  
-    .addField('Каналов', message.guild.channels.size, true )
-    .addField('Текстовых каналов', message.guild.channels.size - chanelkol, true)
-    .addField('Голосовых каналов', chanelkol, true)
-    .setFooter("Для просмотра ролей " + prefix + "roles", 'https://cdn.discordapp.com/attachments/351491707554103297/395563014113329162/-1.gif')
-    message.channel.send({embed})
- 
-}
+    .addField('Участников (' + message.guild.memberCount + ")", "Онлайн " + online_user, true)
+    .addField("Играют в MWO", uptimer, true)
+    .addField("Время с момента запуска", "**" + uptime[1].substring(1) + "**", true)
+console.log(message.channel.name)
 
+    message.channel.send({embed})
+}
+if(message.channel.name == "online_en" || message.channel.name == "general_en" || message.channel.name == "help_en" || message.channel.name == "flood_en" || message.channel.name == "nsfw_en" || message.channel.name == "emulators_en" ||  message.channel.name == "other_games" ||  message.channel.name == "offlineisgoodtoo_en" )
+{
+  const Discord = require('discord.js');
+  const embed = new Discord.MessageEmbed()
+
+  .setColor(message.guild.members.get(client.user.id).displayColor)
+  .setThumbnail(message.guild.iconURL())
+
+  .setAuthor(message.guild.name, message.guild.iconURL())
+  /*.setThumbnail(message.author.avatarURL)*/
+
+  
+  .addField("Owner", "<@" + message.guild.ownerID + ">", true)
+  .addField('ID', message.guild.id, true)
+
+  .addField('Created on', year + "-"+month+"-"+day+ " " + hours+":"+minutes+":"+seconds, true)
+  .addField('Region', message.guild.region, true)
+  .addField('Members (' + message.guild.memberCount + ")", "Online " + online_user, true)
+  .addField("Playing in MWO", uptimer, true)
+  .addField("Server uptime", "**" + uptime[1].substring(1) + "**", true)
+console.log("eng")
+
+  message.channel.send({embed})
+}
+  }})
+}
+if(commandIs("help", message))
+{
+ 
+ if(message.channel.name == "online_ru" || message.channel.name == "general_ru" || message.channel.name == "help_ru" || message.channel.name == "flood_ru" || message.channel.name == "nsfw_ru")
+{
+  const Discord = require('discord.js');
+  const embed = new Discord.MessageEmbed()
+  .setAuthor(message.guild.name, message.guild.iconURL())
+  .setColor(message.guild.members.get(client.user.id).displayColor)
+  //.setThumbnail(message.guild.iconURL())
+  .setDescription('`mw!uptime` - Время с момента запуска сервера\n`mw!players` - Список игроков, которые играют в данный момент\n~~`mw!link` "твой ник" - Привязка аккаунта дискорда к нику~~(Временно не работает)\n~~`mw!unlink` - Отвязать аккаунт~~(Временно не работает)\n`mw!serverinfo` - Информация о сервере')
+  message.channel.send({embed})
+}
+else
+{
+  const Discord = require('discord.js');
+  const embed = new Discord.MessageEmbed()
+  .setAuthor(message.guild.name, message.guild.iconURL())
+  .setColor(message.guild.members.get(client.user.id).displayColor)
+  //.setThumbnail(message.guild.iconURL())
+  .setDescription("`mw!uptime` - Server uptime\n`mw!player`s - Show the player list\n~~`mw!link` <your nickname> - bind your Discord account to the specified MWO nickname~~(Temporarily not working)\n~~`mw!unlink` - Unbind the account~~(Temporarily not working)\n`mw!serverinfo` - Information about server")
+  message.channel.send({embed})
+}
+}
 });
+
 
 client.login(process.env.BOT_TOKEN);
 
