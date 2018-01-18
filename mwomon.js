@@ -581,8 +581,30 @@ else
   message.channel.send({embed})
 }
 }
+if(commandIs("download", message))
+{
+  if(message.channel.name == "online_ru" || message.channel.name == "general_ru" || message.channel.name == "help_ru" || message.channel.name == "flood_ru" || message.channel.name == "nsfw_ru")
+{
+  const Discord = require('discord.js');
+  const embed = new Discord.MessageEmbed()
+  .setAuthor(message.guild.name, message.guild.iconURL())
+  .setColor(message.guild.members.get(client.user.id).displayColor)
+  //.setThumbnail(message.guild.iconURL())
+  .setDescription("[**Скачать MWO 1.2.1**](http://haont.ru/mwo/latest.zip)\n\n**Инструкция по установке в канале **<#366920395728879616>")
+  message.channel.send({embed})
+}
+else
+{
+  const Discord = require('discord.js');
+  const embed = new Discord.MessageEmbed()
+  .setAuthor(message.guild.name, message.guild.iconURL())
+  .setColor(message.guild.members.get(client.user.id).displayColor)
+  //.setThumbnail(message.guild.iconURL())
+  .setDescription("[**Download MWO 1.2.1**](http://haont.ru/mwo/latest.zip)\n\n**Installation Tutorial** <#359076824074027010>")
+  message.channel.send({embed})
+}
+}
 });
-
 
 client.login(process.env.BOT_TOKEN);
 
