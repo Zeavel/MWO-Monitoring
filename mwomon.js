@@ -11,7 +11,7 @@ var words = ["как скачать мво", "где скачать мво"];
 
 
 function commandIs(str, msg){
-    return msg.content.toLowerCase().startsWith("cw!" + str);
+    return msg.content.toLowerCase().startsWith("mw!" + str);
 }
 
 function pluck(array) {
