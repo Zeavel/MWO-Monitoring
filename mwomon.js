@@ -7,11 +7,11 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Commandss = new CC.Commands();
 var fs = require("fs");
-
+var words = ["как скачать мво", "где скачать мво"];
 
 
 function commandIs(str, msg){
-    return msg.content.toLowerCase().startsWith("mw!" + str);
+    return msg.content.toLowerCase().startsWith("cw!" + str);
 }
 
 function pluck(array) {
@@ -64,47 +64,21 @@ client.setInterval(function play()
           }
 
         }
-client.user.setActivity(manse, { type: 3}); // type: 2 - Слушает
+client.user.setActivity(manse, { type: 3}); 
+
 client.user.setStatus(statuse)
 
         //console.log(numb + " " + statuse)
       
     }})
 }, 2500)
-/*client.setInterval(function game()
-{
-  var urle = "http://haont.ru/mwo/mon";
-  var cheerio = require('cheerio');
-  var request = require('request');
-  
-  request(urle, function (error, response, body) {
-    if (!error) {
-      
-      var $ = cheerio.load(body)
-  
-      var manse = $('div > #mwo_status_container > h2').text()
- var uptimer =  manse.toString().replace(/players online/, '')
- var numb = parseInt(uptimer)
-       if(client.user.presence.activity == null)
-        {
-         
-            console.log("false")
-          
 
-        }
-        else
-        {
-          var gama = client.user.presence.activity.name
-          // var sta = gama.replace(/players online/, '')
-           //var ches = parseInt(sta)
-           console.log(gama)
-        }
-      
-    }})
-}, 2500)*/
 
 client.on('message', message =>
-{
+{ 
+
+
+  
 if(commandIs("test", message))
 {
   var player = message.content.substring(8)
@@ -244,9 +218,13 @@ if((coorx > 1000 && coory < -2583)&&(coorx < 1528 && coory > -2955))
 
          console.log(manse + "+")
           
-         
+         founduser = message.guild.members.filter(m => m.user.username.toLowerCase().startsWith(manse.toLowerCase())).first()
+         if(founduser == null) {name = "**" + manse + "**"}
+         else{
+          name = "**" + manse + "** (" + founduser.user.tag + ")"
+         }
 
-             name = "**" + manse + "**"
+
 
                 fs.appendFileSync('./players/players.txt', name + " - **[" + rayon + "]**\n")
               
@@ -590,7 +568,7 @@ if(commandIs("download", message))
   .setAuthor(message.guild.name, message.guild.iconURL())
   .setColor(message.guild.members.get(client.user.id).displayColor)
   //.setThumbnail(message.guild.iconURL())
-  .setDescription("[**Скачать MWO 1.2.1**](http://haont.ru/mwo/latest.zip)\n\n**Инструкция по установке в канале **<#366920395728879616>")
+  .setDescription("[**Скачать MWO 1.2**](http://haont.ru/mwo/latest.zip)\n\n**Инструкция по установке в канале **<#366920395728879616>")
   message.channel.send({embed})
 }
 else
@@ -600,11 +578,14 @@ else
   .setAuthor(message.guild.name, message.guild.iconURL())
   .setColor(message.guild.members.get(client.user.id).displayColor)
   //.setThumbnail(message.guild.iconURL())
-  .setDescription("[**Download MWO 1.2.1**](http://haont.ru/mwo/latest.zip)\n\n**Installation Tutorial** <#359076824074027010>")
+  .setDescription("[**Download MWO 1.2**](http://haont.ru/mwo/latest.zip)\n\n**Installation Tutorial** <#359076824074027010>")
   message.channel.send({embed})
 }
 }
-if(message.content.includes("где скачать мво") || message.content.includes("как скачать мво") || message.content.includes("где" && "мво") || message.content.includes("как" && "мво") || message.content.includes(("ссылку" || "ссылка") && ("на мво" || "для скачивания мво" || "мво")))
+
+if(message.content.includes("где скачать мво") || message.content.includes("как скачать мво") || message.content.includes(("ссылку" || "ссылка") && ("на мво" || "для скачивания мво" || "мво")) || message.content.includes("how to download mwo") || message.content.includes("where to download mwo"))
+{
+  if(message.channel.name == "online_ru" || message.channel.name == "general_ru" || message.channel.name == "help_ru" || message.channel.name == "flood_ru" || message.channel.name == "nsfw_ru")
 {
   const Discord = require('discord.js');
   const embed = new Discord.MessageEmbed()
@@ -614,8 +595,60 @@ if(message.content.includes("где скачать мво") || message.content.i
   .setDescription("[**Скачать MWO 1.2**](http://haont.ru/mwo/latest.zip)\n\n**Инструкция по установке в канале **<#366920395728879616>")
   message.channel.send({embed})
 }
+else{
+  const Discord = require('discord.js');
+  const embed = new Discord.MessageEmbed()
+  .setAuthor(message.guild.name, message.guild.iconURL())
+  .setColor(message.guild.members.get(client.user.id).displayColor)
+  //.setThumbnail(message.guild.iconURL())
+  .setDescription("[**Download MWO 1.2**](http://haont.ru/mwo/latest.zip)\n\n**Installation Tutorial** <#359076824074027010>")
+  message.channel.send({embed})
+}
+}
+if(message.content == "ser")
+{
+  client.guilds.get('287521695487623168').channels.get("398400800130465792").send("как скачать мво")
+}
+if(commandIs("bl", message))
+{
+  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872")
+  {
+    console.log("somebody tried to call command")
+  }
+  else{
+  const Discord = require('discord.js');
+  const embed = new Discord.MessageEmbed()
+  .setAuthor("Blacklist MWO", client.guilds.get('287521695487623168').iconURL())
+  .setColor(client.guilds.get('287521695487623168').members.get("397332225185677313").displayColor)
+  //.setThumbnail(message.guild.iconURL())
+  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Dodge Viper]\n#4 - <:nissan:404718662927384596> **Nissan 350z** (MrAdamTheSpriter#2745)\n       [NA]\n#5 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [NA]" )
+  message.channel.send({embed})
+  }
+}
+if(commandIs("racer", message))
+{
+  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872")
+  {
+    console.log("somebody tried to call command")
+  }
+  else{
+  var racer = message.content.substring(9)
+  const Discord = require('discord.js');
+  const embed = new Discord.MessageEmbed()
+  .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
+  .setColor(client.guilds.get('287521695487623168').members.get("397332225185677313").displayColor)
+  .addField("Nickname", "**darudnik**", true)
+  .addField("Tag", "darudnik#4008", true)
+  .addField("Position", "#2", true)
+  .addField("Car", "Porsche Carrera GT", true)
+  .addField("Playing", "No", true)
+  .addField("Favorite races:", "-Sprint\n-Circuit\n-Speedtrap", true)
+  
+  .setImage('https://github.com/Zeavel/MWO-Monitoring/blob/master/'+racer+'.jpg?raw=true')
+  message.channel.send({embed})
+  }
+}
 });
-
 client.login(process.env.BOT_TOKEN);
 
 
