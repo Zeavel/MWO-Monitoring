@@ -604,6 +604,16 @@ else
   message.channel.send({embed})
 }
 }
+if(message.content.includes("где скачать мво") || message.content.includes("как скачать мво") || message.content.includes("где" && "мво") || message.content.includes("как" && "мво") || message.content.includes(("ссылку" || "ссылка") && ("на мво" || "для скачивания мво" || "мво")))
+{
+  const Discord = require('discord.js');
+  const embed = new Discord.MessageEmbed()
+  .setAuthor(message.guild.name, message.guild.iconURL())
+  .setColor(message.guild.members.get(client.user.id).displayColor)
+  //.setThumbnail(message.guild.iconURL())
+  .setDescription("[**Скачать MWO 1.2**](http://haont.ru/mwo/latest.zip)\n\n**Инструкция по установке в канале **<#366920395728879616>")
+  message.channel.send({embed})
+}
 });
 
 client.login(process.env.BOT_TOKEN);
