@@ -7,7 +7,6 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Commandss = new CC.Commands();
 var fs = require("fs");
-var words = ["как скачать мво", "где скачать мво"];
 
 
 function commandIs(str, msg){
