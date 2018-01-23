@@ -214,6 +214,10 @@ if((coorx > 1000 && coory < -2583)&&(coorx < 1528 && coory > -2955))
 {
   rayon = "Rosewood, College Hospital"
 }
+if(coorx == 0 && coory == 0)
+{
+  rayon = "Safehouse"
+}            
 
          console.log(manse + "+")
           
@@ -617,10 +621,10 @@ if(commandIs("bl", message))
   else{
   const Discord = require('discord.js');
   const embed = new Discord.MessageEmbed()
-  .setAuthor("Blacklist MWO", client.guilds.get('287521695487623168').iconURL())
+  .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
   .setColor(client.guilds.get('287521695487623168').members.get("397332225185677313").displayColor)
   //.setThumbnail(message.guild.iconURL())
-  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Dodge Viper]\n#4 - <:nissan:404718662927384596> **Nissan 350z** (MrAdamTheSpriter#2745)\n       [NA]\n#5 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [NA]" )
+  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Ford GT]\n#4 - <:nissan:404718662927384596> **Nissan 350z** (MrAdamTheSpriter#2745)\n       [Subaru Impreza]\n#5 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [Lamborghini Murcielago]" )
   message.channel.send({embed})
   }
 }
