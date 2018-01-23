@@ -624,7 +624,7 @@ if(commandIs("bl", message))
   .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
   .setColor(client.guilds.get('287521695487623168').members.get("397332225185677313").displayColor)
   //.setThumbnail(message.guild.iconURL())
-  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Ford GT]\n#4 - <:nissan:404718662927384596> **Nissan 350z** (MrAdamTheSpriter#2745)\n       [Toyota Supra]\n#5 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [Lamborghini Murcielago]\n#6 - <:osprey:405327841597587456> **Osprey22** (Osprey22#2088)\n       [Vauxhall]" )
+  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Ford GT]\n#4 - <:nissan:404718662927384596> **MrAdamTheSpriter** (MrAdamTheSpriter#2745)\n       [Toyota Supra]\n#5 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [Lamborghini Murcielago]\n#6 - <:osprey:405327841597587456> **Osprey22** (Osprey22#2088)\n       [Vauxhall]" )
   message.channel.send({embed})
   }
 }
@@ -635,7 +635,7 @@ if(commandIs("racer", message))
     console.log("somebody tried to call command")
   }
   else{
-    var racers = ["darudnik", "Startul", "Osprey22"]
+    var racers = ["darudnik", "Startul", "Osprey22", "MrAdamTheSpriter"]
   var racer = message.content.substring(9)
   if(!racers.toString().includes(racer))
   {
@@ -648,22 +648,29 @@ if(commandIs("racer", message))
     tags = "darudnik#4008"
     pos = "#2"
     car = "Porsche Carrera GT"
-    fav = "-Sprint\n-Circuit\n-Speedtrap"
+    fav = "- Sprint\n- Circuit\n- Speedtrap"
   }
   if(racer == "Startul")
   {
     tags = "Startul Rtural#8867"
     pos = "#5"
     car = "Lamborghini Murcielago"
-    fav = "-Sprint\n-Drag\n-Tollbooth"
+    fav = "- Sprint\n- Drag\n- Tollbooth"
   }
    if(racer == "Osprey22")
   {
     tags = "Osprey22#2088"
     pos = "#6"
     car = "Vauxhall"
-    fav = "-Sprint\n-Speedtrap"
-  }    
+    fav = "- Sprint\n- Speedtrap"
+  }
+       if(racer == "MrAdamTheSpriter")
+  {
+    tags = "MrAdamTheSpriter#2745"
+    pos = "#4"
+    car = "Toyota Supra"
+    fav = "- Sprint\n- Drag\n- Speedtrap"
+  }  
   const Discord = require('discord.js');
   const embed = new Discord.MessageEmbed()
   .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
