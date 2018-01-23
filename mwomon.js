@@ -614,7 +614,7 @@ if(message.content == "ser")
 }
 if(commandIs("bl", message))
 {
-  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872")
+  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "220154836589608960")
   {
     console.log("somebody tried to call command")
   }
@@ -624,13 +624,13 @@ if(commandIs("bl", message))
   .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
   .setColor(client.guilds.get('287521695487623168').members.get("397332225185677313").displayColor)
   //.setThumbnail(message.guild.iconURL())
-  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Ford GT]\n#4 - <:nissan:404718662927384596> **Nissan 350z** (MrAdamTheSpriter#2745)\n       [Subaru Impreza]\n#5 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [Lamborghini Murcielago]" )
+  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Ford GT]\n#4 - <:nissan:404718662927384596> **Nissan 350z** (MrAdamTheSpriter#2745)\n       [Toyota Supra]\n#5 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [Lamborghini Murcielago]\n#6 - <:osprey:405327841597587456> **Osprey22** (Osprey22#2088)\n       [Vauxhall]" )
   message.channel.send({embed})
   }
 }
 if(commandIs("racer", message))
 {
-  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872")
+  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "220154836589608960")
   {
     console.log("somebody tried to call command")
   }
@@ -657,6 +657,13 @@ if(commandIs("racer", message))
     car = "Lamborghini Murcielago"
     fav = "-Sprint\n-Drag\n-Tollbooth"
   }
+   if(racer == "Osprey22")
+  {
+    tags = "Osprey22#2088"
+    pos = "#6"
+    car = "Vauxhall"
+    fav = "-Sprint\n-Speedtrap"
+  }    
   const Discord = require('discord.js');
   const embed = new Discord.MessageEmbed()
   .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
