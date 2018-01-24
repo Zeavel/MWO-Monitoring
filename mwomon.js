@@ -635,7 +635,7 @@ if(commandIs("racer", message))
     console.log("somebody tried to call command")
   }
   else{
-    var racers = ["darudnik", "Startul", "Osprey22", "MrAdamTheSpriter", "Zipper"]
+    var racers = ["darudnik", "Startul", "Osprey22", "MrAdamTheSpriter", "Zipper", "elaymm4"]
   var racer = message.content.substring(9)
   if(!racers.toString().includes(racer))
   {
@@ -677,7 +677,14 @@ if(commandIs("racer", message))
     pos = "#3"
     car = "Lotus Elise"
     fav = "- Sprint\n- Circuit"
-  }     
+  } 
+      if(racer == "elaymm4")
+  {
+    tags = "elaymm4#9944"
+    pos = "#1"
+    car = "BMW M3 GTR"
+    fav = "- Sprint\n- Tollbooth"
+  }
   const Discord = require('discord.js');
   const embed = new Discord.MessageEmbed()
   .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
