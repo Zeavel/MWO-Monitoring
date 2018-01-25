@@ -692,6 +692,13 @@ if(commandIs("racer", message))
     car = "Mercedes-Benz CLK 500"
     fav = "- Sprint\n- Lap Knockout"
   }
+      if(racer == "osdever")
+  {
+    tags = "osdever#4170"
+    pos = "#4"
+    car = "Ford GT"
+    fav = "- Sprint\n- Speedtrap"
+  }
   const Discord = require('discord.js');
   const embed = new Discord.MessageEmbed()
   .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
