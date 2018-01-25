@@ -635,7 +635,7 @@ if(commandIs("racer", message))
     console.log("somebody tried to call command")
   }
   else{
-    var racers = ["darudnik", "Startul", "Osprey22", "MrAdamTheSpriter", "Zipper", "elaymm4"]
+    var racers = ["darudnik", "Startul", "Osprey22", "MrAdamTheSpriter", "Zipper", "elaymm4", "Rachel"]
   var racer = message.content.substring(9)
   if(!racers.toString().includes(racer))
   {
@@ -684,6 +684,13 @@ if(commandIs("racer", message))
     pos = "#1"
     car = "BMW M3 GTR"
     fav = "- Sprint\n- Tollbooth"
+  }
+      if(racer == "Rachel")
+  {
+    tags = "Rachel#5883"
+    pos = "#8"
+    car = "Mercedes-Benz CLK 500"
+    fav = "- Sprint\n- Lap Knockout"
   }
   const Discord = require('discord.js');
   const embed = new Discord.MessageEmbed()
