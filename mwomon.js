@@ -635,7 +635,7 @@ if(commandIs("racer", message))
     console.log("somebody tried to call command")
   }
   else{
-    var racers = ["darudnik", "Startul", "Osprey22", "MrAdamTheSpriter", "Zipper", "elaymm4", "Rachel"]
+    var racers = ["darudnik", "Startul", "Osprey22", "MrAdamTheSpriter", "Zipper", "elaymm4", "Rachel", "osdever"]
   var racer = message.content.substring(9)
   if(!racers.toString().includes(racer))
   {
