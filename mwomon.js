@@ -10,7 +10,7 @@ var fs = require("fs");
 
 
 function commandIs(str, msg){
-    return msg.content.toLowerCase().startsWith("mw!" + str);
+    return msg.content.toLowerCase().startsWith("cw!" + str);
 }
 
 function pluck(array) {
