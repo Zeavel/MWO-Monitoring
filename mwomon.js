@@ -77,34 +77,7 @@ client.on('message', message =>
 { 
 
 
-  
-if(commandIs("test", message))
-{
-  var player = message.content.substring(8)
-  var mysql = require('mysql')
-  var coninfo = {
-    host: "sql10.freemysqlhosting.net",
-    user: "sql10214385",
-    password: "hjLYb35UGl",
-    database: "sql10214385"
-  }
-  
-  var con = mysql.createConnection(coninfo);
-  
-  con.connect(err => {
-    if (err) throw(err);
-    console.log(`Connected to ${coninfo.host} as ${coninfo.user}.`)
-    //con.query(`INSERT INTO Accounts (Nickname, Tag) VALUES ('${player}', '${message.author.tag}')`)
-  con.query(`DELETE FROM Accounts WHERE Nickname = '${player}'`)
-    /*con.query(`SELECT Tag FROM Accounts`, (error, rows, results) => {
-    
-  console.log(rows)
-       // console.log(rows)
-        
-      });*/
-    //con.query(`SELECT * FROM Accounts WHERE Nickname = '${player}'`, console.log)
-  })
-}
+
 if(commandIs('uptime', message))
 {
     var url = "http://haont.ru/mwo/mon";
