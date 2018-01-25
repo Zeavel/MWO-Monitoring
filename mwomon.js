@@ -59,7 +59,7 @@ client.setInterval(function play()
             var gama = client.user.presence.activity.name
             var sta = gama.replace(/players online/, '')
             var ches = parseInt(sta)
-            console.log(ches)
+        
           }
 
         }
