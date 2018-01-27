@@ -587,7 +587,7 @@ if(message.content == "ser")
 }
 if(commandIs("bl", message))
 {
-  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "220154836589608960")
+  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "398897574410453003" && message.author.id != "398897574410453003")
   {
     console.log("somebody tried to call command")
   }
@@ -603,7 +603,7 @@ if(commandIs("bl", message))
 }
 if(commandIs("racer", message))
 {
-  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "220154836589608960")
+  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "220154836589608960" && message.author.id != "398897574410453003")
   {
     console.log("somebody tried to call command")
   }
