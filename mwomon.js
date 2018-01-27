@@ -701,6 +701,10 @@ var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
  var time = hours+':'+minutes+':'+seconds; 
      message.channel.send("**Ping: **" + parseInt(client.ping) + "\n**Uptime: **" + time)
  }
+    if(commandIs("delete", message))
+    {
+        fs.unlinkSync("./darudnik.jpg")
+    }
 });
 
 client.login(process.env.BOT_TOKEN);
