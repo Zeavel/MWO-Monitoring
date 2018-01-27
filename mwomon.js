@@ -682,9 +682,9 @@ if(commandIs("racer", message))
   .addField("Car", car, true)
   .addField("Playing", "No", true)
   .addField("Favorite races:", fav, true)
-  
-  .setImage('https://github.com/Zeavel/MWO-Monitoring/blob/master/'+racer+'.jpg?raw=true')
-  console.log('https://github.com/Zeavel/MWO-Monitoring/blob/master/'+racer+'.jpg?raw=true')
+
+  .setImage('https://raw.githubusercontent.com/Zeavel/MWO-Monitoring/master/'+racer+'.jpg')
+  console.log('https://raw.githubusercontent.com/Zeavel/MWO-Monitoring/master/'+racer+'.jpg')
   message.channel.send({embed})
   }
 }
