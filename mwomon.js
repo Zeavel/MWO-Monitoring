@@ -705,6 +705,21 @@ var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
     {
         fs.unlinkSync("./darudnik.jpg")
     }
+    if(commandIs("stdasdasdasdasdart", message))
+    {
+        for(i=0; i < kolvoplayers; i++)
+        {
+            if(!nicknamebl.includes(nickname_server)) continue;
+            if(nicknamebl.includes(nickname_server) && (coorx >= coorxy_of_finish && coory <= coory_of_finish))
+            {
+                fs.writeFileSync("./winnernick.txt", nickname_server)
+                break;
+            }
+        
+            
+        }
+        message.channel.send("**" + fs.readFileSync("./winnernick.txt", "utf8") + "** won!" )
+    }
 });
 
 client.login(process.env.BOT_TOKEN);
