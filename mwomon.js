@@ -715,6 +715,9 @@ var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
                 fs.writeFileSync("./winnernick.txt", nickname_server)
                 break;
             }
+            else continue;
+            
+            
         
             
         }
