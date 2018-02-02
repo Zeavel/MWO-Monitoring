@@ -91,7 +91,7 @@ if(commandIs('uptime', message))
     
         var mans = $('#mwo_status_container').text()
   var uptime =  mans.split(":")
-  var uptime2 = uptime[1].substring(uptime[1].length).replace(/[ ]/g, '')
+  var uptime2 = uptime[1].replace(/[ ]/g, '')
 
     //console.log(uptime[1])
     const Discord = require('discord.js');
