@@ -91,6 +91,7 @@ if(commandIs('uptime', message))
     
         var mans = $('#mwo_status_container').text()
   var uptime =  mans.split(":")
+  var uptime2 = uptime[1].substring(uptime[1].length).replace(/[ ]/g, '')
 
     //console.log(uptime[1])
     const Discord = require('discord.js');
@@ -99,7 +100,7 @@ if(commandIs('uptime', message))
 
       .setAuthor("MWO-Monitoring", client.user.displayAvatarURL())
       .setTitle("Server uptime")
-      .setDescription("**" + uptime[1].substring(1) + "**")
+      .setDescription("**" + uptime2.substring(1) + "**")
       //.addField("Server uptime","**" + uptime[1] + "**"))
       .setColor(message.guild.members.get(client.user.id).displayColor)
 
