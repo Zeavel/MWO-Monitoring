@@ -724,6 +724,73 @@ var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
         }
         message.channel.send("**" + fs.readFileSync("./winnernick.txt", "utf8") + "** won!" )
     }
+    if(commandIs("start", message))
+    {
+      var name = "darudnik"
+  fs.writeFileSync('./bl.txt', name)
+  var nicknamebl = fs.readFileSync("./bl.txt", "utf8")
+  var url = "http://haont.ru/mwo/mon";
+    var cheerio = require('cheerio');
+    var request = require('request');
+    console.log("test")
+   client.setInterval(function nick()
+{
+  
+    request(url, function (error, response, body) {
+      if (!error) {
+       
+        var $ = cheerio.load(body)
+        var mans = $('#mwo_status_container > h2').text()
+
+        var uptimer =  mans.split(": ")
+        if(uptimer.toString().includes("1"))
+        {
+          uptima = uptimer.toString().replace(/players/g, "player")
+        }
+        else
+        {
+          uptima = uptimer
+        }
+        var realup = parseInt(uptimer.toString().replace(/players online/g, '')) + 1
+
+        for(i=2; i <= realup; i++)
+        {
+          var manse = $('div > #mwo_list_container > .table > table > tbody > tr:nth-child('+ i +') > td:nth-child(2)').text()
+          var coor = $('div > #mwo_list_container > .table > table > tbody > tr:nth-child('+ i +') > td:nth-child(4)').text()
+          var id = $('div > #mwo_list_container > .table > table > tbody > tr:nth-child('+ i +') > td:nth-child(1)').text()
+          var chey = coor.replace(/y:/g, ' - ')
+         chey.replace(/z:/g, ' - ')
+         var coore = coor.split(";")
+         var coorxx = coore[0]
+
+         var cooryy = coore[1]
+
+         var coorzz = coore[2]
+
+var coorx = parseInt(coorxx.substring(4))
+var coory = parseInt(cooryy.substring(3))
+var coorz = parseInt(coorzz.substring(3))
+
+            if(!nicknamebl.includes(manse)) continue;
+            if(nicknamebl.includes(manse) && ((coorx >= 3900 && coory >= -310) &&( coorx <= 4030 && coory <= -190)))
+            {
+          console.log( manse + ' won!')
+                //fs.writeFileSync("./winnernick.txt", manse)
+                
+                break;
+            }
+            else continue;
+           
+            
+        
+            
+        }
+      }} )
+         }, 2000)
+     
+        
+       
+    }
 });
 
 client.login(process.env.BOT_TOKEN);
