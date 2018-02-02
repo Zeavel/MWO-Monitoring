@@ -108,7 +108,7 @@ if(commandIs('uptime', message))
 
       .setAuthor("MWO-Monitoring", client.user.displayAvatarURL())
       .setTitle("Server uptime")
-      .setDescription("**" + uptime7 + "**")
+      .setDescription("**" + uptime6 + "**")
       //.addField("Server uptime","**" + uptime[1] + "**"))
       .setColor(message.guild.members.get(client.user.id).displayColor)
 
