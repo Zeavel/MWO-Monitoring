@@ -92,12 +92,12 @@ if(commandIs('uptime', message))
         var mans = $('#mwo_status_container').text()
   var uptime =  mans.split(":")
  
-  var uptime2 = uptime[1].replace(/[ ]/, "")
-  var uptime3 = uptime2.replace(/days/, ":")
-  var uptime4 = uptime3.replace(/hours/, ":")
-  var uptime5 = uptime4.replace(/minutes/, ":")
-  var uptime6 = uptime5.replace(/seconds/, ":")
-  var uptime7 = uptime4.replace(/[:]/g, " ")
+  var uptime2 = uptime[1].replace(/[ ]/g, "")
+  var uptime3 = uptime2.replace(/days/, " days ")
+  var uptime4 = uptime3.replace(/hours/, " hours ")
+  var uptime5 = uptime4.replace(/minutes/, " minutes ")
+  var uptime6 = uptime5.replace(/seconds/, " seconds ")
+
 
 
 
