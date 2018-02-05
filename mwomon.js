@@ -804,9 +804,11 @@ var coorz = parseInt(coorzz.substring(3))
       var name = message.content.substring(9)
   fs.writeFileSync('./bl.txt', name)
   var nicknamebl = fs.readFileSync("./bl.txt", "utf8")
+  message.channel.send("race is started!")
   var url = "http://haont.ru/mwo/mon";
     var cheerio = require('cheerio');
     var request = require('request');
+        
     console.log("test")
    client.setInterval(function nick()
 {
@@ -853,6 +855,7 @@ var coorz = parseInt(coorzz.substring(3))
             {
               message.channel.send( manse + ' won!')
               fs.unlinkSync("./bl.txt")
+               // message.channel.send("race is started!")
              //   fs.writeFileSync("./winnernick.txt", manse)
                 
                 break;
