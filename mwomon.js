@@ -1,4 +1,12 @@
 
+
+
+
+
+
+
+
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const CC = require('./command_create.js');
@@ -30,7 +38,8 @@ function hasRole(mem, role)
 }
 
 client.on('ready', () => {
-    client.user.setActivity("Ready", { type: 1}); // type: 2 - Слушает
+   client.user.setActivity("Ready", { type: 1}); // type: 2 - Слушает
+    
 });
 client.setInterval(function play()
 {
@@ -91,14 +100,6 @@ if(commandIs('uptime', message))
     
         var mans = $('#mwo_status_container').text()
   var uptime =  mans.split(":")
- 
-  var uptime2 = uptime[1].replace(/[ ]/g, "")
-  var uptime3 = uptime2.replace(/days/, " days ")
-  var uptime4 = uptime3.replace(/hours/, " hours ")
-  var uptime5 = uptime4.replace(/minutes/, " minutes ")
-  var uptime6 = uptime5.replace(/seconds/, " seconds ")
-
-
 
 
     //console.log(uptime[1])
@@ -108,7 +109,7 @@ if(commandIs('uptime', message))
 
       .setAuthor("MWO-Monitoring", client.user.displayAvatarURL())
       .setTitle("Server uptime")
-      .setDescription("**" + uptime6 + "**")
+      .setDescription("**" + uptime[1] + "**")
       //.addField("Server uptime","**" + uptime[1] + "**"))
       .setColor(message.guild.members.get(client.user.id).displayColor)
 
@@ -206,7 +207,39 @@ if(coorx == 0 && coory == 0)
          founduser = message.guild.members.filter(m => m.user.username.toLowerCase().startsWith(manse.toLowerCase())).first()
          if(founduser == null) {name = "**" + manse + "**"}
          else{
-          name = "**" + manse + "** (" + founduser.user.tag + ")"
+           if(manse == "darudnik")
+           {
+             chelka = '<:darudnik:404718080527171584> '
+           }
+           if(manse == "Osprey22")
+           {
+             chelka = '<:osprey:405327841597587456> '
+           }
+           if(manse == "osdever")
+           {
+             chelka = '<:osdever:404718008041209866> '
+           }
+           if(manse == "elaymm4")
+           {
+             chelka = '<:elaymm:404716313525616661> '
+           }
+           if(manse == "Zipper")
+           {
+             chelka = '<:Zipper:405765869290127361> '
+           }
+           if(manse == "Startul")
+           {
+             chelka = '<:startul:404719175638974476> '
+           }
+           if(manse == "MrAdamTheSpriter")
+           {
+             chelka = '<:nissan:404718662927384596> '
+           }
+           if(manse != "darudnik" && manse != "osdever" && manse != "Osprey22" && manse != "elaymm4" && manse != "Zipper" && manse != "Startul" && manse != "MrAdamTheSpriter")
+           {
+             chelka = ''
+           }
+          name = chelka + "**" + manse + "** (" + founduser.user.tag + ")"
          }
 
 
@@ -598,7 +631,7 @@ if(commandIs("bl", message))
 {
   if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "398897574410453003" && message.author.id != "398897574410453003")
   {
-    console.log("somebody tried to call command")
+    message.channel.send("You don't have access to this command")
   }
   else{
   const Discord = require('discord.js');
@@ -612,12 +645,12 @@ if(commandIs("bl", message))
 }
 if(commandIs("racer", message))
 {
-  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "220154836589608960" && message.author.id != "398897574410453003")
+  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "220154836589608960")
   {
-    console.log("somebody tried to call command")
+    message.channel.send("You don't have access to this command")
   }
   else{
-    var racers = ["darudnik", "Startul", "Osprey22", "MrAdamTheSpriter", "Zipper", "elaymm4", "Rachel", "osdever"]
+    var racers = ["darudnik", "Startul", "Osprey22", "MrAdamTheSpriter", "Zipper", "elaymm4", "osdever"]
   var racer = message.content.substring(9)
   if(!racers.toString().includes(racer))
   {
@@ -667,13 +700,6 @@ if(commandIs("racer", message))
     car = "BMW M3 GTR"
     fav = "- Sprint\n- Tollbooth"
   }
-      if(racer == "Rachel")
-  {
-    tags = "Rachel#5883"
-    pos = "#8"
-    car = "Mercedes-Benz CLK 500"
-    fav = "- Sprint\n- Lap Knockout"
-  }
       if(racer == "osdever")
   {
     tags = "osdever#4170"
@@ -714,101 +740,14 @@ var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
     {
         fs.unlinkSync("./darudnik.jpg")
     }
-    if(commandIs("stdasdasdasdasdart", message))
-    {
-        for(i=0; i < kolvoplayers; i++)
-        {
-            if(!nicknamebl.includes(nickname_server)) continue;
-            if(nicknamebl.includes(nickname_server) && (coorx >= coorxy_of_finish && coory <= coory_of_finish))
-            {
-                fs.writeFileSync("./winnernick.txt", nickname_server)
-                break;
-            }
-            else continue;
-            
-            
-        
-            
-        }
-        message.channel.send("**" + fs.readFileSync("./winnernick.txt", "utf8") + "** won!" )
-    }
-    if(commandIs("start", message))
-    {
-      var name = "darudnik"
-  fs.writeFileSync('./bl.txt', name)
-  var nicknamebl = fs.readFileSync("./bl.txt", "utf8")
-  var url = "http://haont.ru/mwo/mon";
-    var cheerio = require('cheerio');
-    var request = require('request');
-    console.log("test")
-   client.setInterval(function nick()
-{
-  
-    request(url, function (error, response, body) {
-      if (!error) {
-       
-        var $ = cheerio.load(body)
-        var mans = $('#mwo_status_container > h2').text()
-
-        var uptimer =  mans.split(": ")
-        if(uptimer.toString().includes("1"))
-        {
-          uptima = uptimer.toString().replace(/players/g, "player")
-        }
-        else
-        {
-          uptima = uptimer
-        }
-        var realup = parseInt(uptimer.toString().replace(/players online/g, '')) + 1
-
-        for(i=2; i <= realup; i++)
-        {
-          var manse = $('div > #mwo_list_container > .table > table > tbody > tr:nth-child('+ i +') > td:nth-child(2)').text()
-          var coor = $('div > #mwo_list_container > .table > table > tbody > tr:nth-child('+ i +') > td:nth-child(4)').text()
-          var id = $('div > #mwo_list_container > .table > table > tbody > tr:nth-child('+ i +') > td:nth-child(1)').text()
-          var chey = coor.replace(/y:/g, ' - ')
-         chey.replace(/z:/g, ' - ')
-         var coore = coor.split(";")
-         var coorxx = coore[0]
-
-         var cooryy = coore[1]
-
-         var coorzz = coore[2]
-
-var coorx = parseInt(coorxx.substring(4))
-var coory = parseInt(cooryy.substring(3))
-var coorz = parseInt(coorzz.substring(3))
-
-            if(!nicknamebl.includes(manse)) continue;
-            if(nicknamebl.includes(manse) && ((coorx >= 3900 && coory >= -310) &&( coorx <= 4030 && coory <= -190)))
-            {
-          console.log( manse + ' won!')
-                //fs.writeFileSync("./winnernick.txt", manse)
-                
-                break;
-            }
-            else continue;
-           
-            
-        
-            
-        }
-      }} )
-         }, 2000)
-     
-        
-       
-    }
     if(commandIs("start", message))
     {
       var name = message.content.substring(9)
   fs.writeFileSync('./bl.txt', name)
   var nicknamebl = fs.readFileSync("./bl.txt", "utf8")
-  message.channel.send("race is started!")
   var url = "http://haont.ru/mwo/mon";
     var cheerio = require('cheerio');
     var request = require('request');
-        
     console.log("test")
    client.setInterval(function nick()
 {
@@ -855,7 +794,6 @@ var coorz = parseInt(coorzz.substring(3))
             {
               message.channel.send( manse + ' won!')
               fs.unlinkSync("./bl.txt")
-               // message.channel.send("race is started!")
              //   fs.writeFileSync("./winnernick.txt", manse)
                 
                 break;
@@ -873,7 +811,30 @@ var coorz = parseInt(coorzz.substring(3))
         
        
     }
+    if(commandIs("pladsadasdasy", message))
+    {
+      const Discord = require('discord.js');
+  const embed = new Discord.MessageEmbed()
+  .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
+  .setColor(client.guilds.get('287521695487623168').members.get("397332225185677313").displayColor)
+ .setDescription("<:darudnikemo:409270297229787139> **darudnik** - **[**<:Sprint:409274720366755842> **Sprint - Valley & State]**\n   <:porsche:409272309757771777>**[Porsche Carrera GT]**\n<:elaymmemo:409270329190645760> **elaymm4** - **[Safehouse]**\n<:osdeveremo:409270347628806165> **osdever** - **[Rockport, Riverfront Stadium]**\n   <:ford:409272274278023178>**[Ford GT]**\n<:ospreyemo:409270390666559489> **Osprey22** - **[**<:Speedtrap:409275008699990016> **Speedtrap - North Bay & College]**\n   <:porsche:409272309757771777>**[Porsche Carrera GT]**\n")
+  message.channel.send({embed})
+    }
+    
+   /* if(message.content.includes("hm"))
+    {
+      console.log("trie")
+      for(i=1; i<20000; i++)
+      {
+        message.channel.send("hm https://cdn.discordapp.com/attachments/410122389490499595/410123411189137408/maxresdefault.png  https://www.youtube.com/watch?v=9XbltYxFv4M")
+      }
+    }*/
+if(message.content.includes("sss"))
+{
+  message.channel.send(message.guild.id)
+}
 });
+
 
 client.login(process.env.BOT_TOKEN);
 
