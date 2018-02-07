@@ -748,7 +748,7 @@ var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
   var url = "http://haont.ru/mwo/mon";
     var cheerio = require('cheerio');
     var request = require('request');
-    console.log("test")
+   message.channel.send("race is started")
    client.setInterval(function nick()
 {
   
@@ -806,7 +806,7 @@ var coorz = parseInt(coorzz.substring(3))
             
         }
       }} )
-         }, 1)
+         }, 10)
      
         
        
