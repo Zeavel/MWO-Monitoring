@@ -7,6 +7,7 @@
 
 
 
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const CC = require('./command_create.js');
@@ -99,7 +100,12 @@ if(commandIs('uptime', message))
         var $ = cheerio.load(body)
     
         var mans = $('#mwo_status_container').text()
-  var uptime =  mans.split(":")
+  var uptime =  mans.split(":")[1]
+  var uptime2 = uptime.replace(/[ ]/g, "")
+  var uptime3 = uptime2.replace(/days/, " days ")
+  var uptime4 = uptime3.replace(/hours/, " hours ")
+  var uptime5 = uptime4.replace(/minutes/, " minutes ")
+  var uptime6 = uptime5.replace(/seconds/, " seconds ")
 
 
     //console.log(uptime[1])
@@ -109,7 +115,7 @@ if(commandIs('uptime', message))
 
       .setAuthor("MWO-Monitoring", client.user.displayAvatarURL())
       .setTitle("Server uptime")
-      .setDescription("**" + uptime[1] + "**")
+      .setDescription("**" + uptime6 + "**")
       //.addField("Server uptime","**" + uptime[1] + "**"))
       .setColor(message.guild.members.get(client.user.id).displayColor)
 
@@ -629,7 +635,7 @@ if(message.content == "ser")
 }
 if(commandIs("bl", message))
 {
-  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "398897574410453003" && message.author.id != "398897574410453003")
+  if(message.author.id != "261150378345758723" && message.author.id != "239837213834215434" && message.author.id != "145329523494223872" && message.author.id != "208027757991428096" && message.author.id != "252400132673241088" && message.author.id != "398897574410453003")
   {
     message.channel.send("You don't have access to this command")
   }
@@ -639,7 +645,7 @@ if(commandIs("bl", message))
   .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
   .setColor(client.guilds.get('287521695487623168').members.get("397332225185677313").displayColor)
   //.setThumbnail(message.guild.iconURL())
-  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:Zipper:405765869290127361> **Zipper** (Zipper#7312)\n       [Lotus Elise]\n#4 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Ford GT]\n#5 - <:nissan:404718662927384596> **MrAdamTheSpriter** (MrAdamTheSpriter#2745)\n       [Toyota Supra]\n#6 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [Lamborghini Murcielago]\n#7 - <:osprey:405327841597587456> **Osprey22** (Osprey22#2088)\n       [Vauxhall Monaro]\n#8 - <:Rachel:405765913892356096> **Rachel** (Rachel#5883)\n       [Mercedes-Benz CLK 500]" )
+  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:Zipper:405765869290127361> **Zipper** (Zipper#7312)\n       [Lotus Elise]\n#4 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Ford GT]\n#5 - <:nissan:404718662927384596> **MrAdamTheSpriter** (MrAdamTheSpriter#2745)\n       [Toyota Supra]\n#6 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [Lamborghini Murcielago]\n#7 - <:osprey:405327841597587456> **Osprey22** (Osprey22#2088)\n       [Vauxhall Monaro]")
   message.channel.send({embed})
   }
 }
@@ -743,6 +749,12 @@ var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
     if(commandIs("start", message))
     {
       var name = message.content.substring(9)
+      if(fs.existsSync('./bl.txt'))
+      {
+        message.channel.send("wait")
+      }
+      else
+      { 
   fs.writeFileSync('./bl.txt', name)
   var nicknamebl = fs.readFileSync("./bl.txt", "utf8")
   var url = "http://haont.ru/mwo/mon";
@@ -809,7 +821,7 @@ var coorz = parseInt(coorzz.substring(3))
          }, 10)
      
         
-       
+        }
     }
     if(commandIs("pladsadasdasy", message))
     {
