@@ -845,8 +845,7 @@ if(message.content.includes("sss"))
 {
   message.channel.send(message.guild.id)
 }
-});
-if(commandIs("getrole", message) && message.channel.name == "roles")
+    if(commandIs("getrole", message) && message.channel.name == "roles")
 {
   var role = message.content.substring(11)
   console.log(role)
@@ -867,6 +866,8 @@ if(commandIs("getrole", message) && message.channel.name == "roles")
     message.delete();
   
 }
+
+});
 
 client.login(process.env.BOT_TOKEN);
 
