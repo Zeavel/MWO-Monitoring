@@ -854,7 +854,7 @@ if(message.content.includes("sss"))
   if(role == "MWO")
   {
  
-    message.member.addRole('409081537884061733')
+    console.log(message.member)//.addRole('409081537884061733')
  
   
   }
