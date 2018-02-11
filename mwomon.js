@@ -243,7 +243,10 @@ if(coorx == 0 && coory == 0)
            }
            if(manse != "darudnik" && manse != "osdever" && manse != "Osprey22" && manse != "elaymm4" && manse != "Zipper" && manse != "Startul" && manse != "MrAdamTheSpriter")
            {
-             chelka = ''
+             client.guilds.get('351491707554103296').createEmoji(message.author.displayAvatarURL(), manse)
+ 
+              var foundEmo =  client.guilds.get('351491707554103296').roles.filter(r=>r.name.toLowerCase().includes(manse)).first();
+            chelka = "<:" + manse + ":" + foundEmo.id + ">"
            }
           name = chelka + "**" + manse + "** (" + founduser.user.tag + ")"
          }
