@@ -846,7 +846,27 @@ if(message.content.includes("sss"))
   message.channel.send(message.guild.id)
 }
 });
+if(commandIs("getrole", message) && message.channel.name == "roles")
+{
+  var role = message.content.substring(11)
+  console.log(role)
 
+  
+  if(role == "MWO")
+  {
+    message.guild.members.get(message.author.id).addRole('409081537884061733');  
+  
+  }
+    if(role == "NFSM")
+    {
+      console.log("true")
+      message.guild.members.get(message.author.id).addRole('409081657354616832');  
+   
+    }
+     
+    message.delete();
+  
+}
 
 client.login(process.env.BOT_TOKEN);
 
