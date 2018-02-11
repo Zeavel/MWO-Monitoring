@@ -853,7 +853,7 @@ if(message.content.includes("sss"))
   
   if(role == "MWO")
   {
-    message.guild.members.get(message.author.id).addRole('409081537884061733');  
+    message.guild.members.get(message.author.id).addRole;  
   
   }
     if(role == "NFSM")
