@@ -645,7 +645,7 @@ if(commandIs("bl", message))
   .setAuthor("MWO Blacklist", client.guilds.get('287521695487623168').iconURL())
   .setColor(client.guilds.get('287521695487623168').members.get("397332225185677313").displayColor)
   //.setThumbnail(message.guild.iconURL())
-  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:Zipper:405765869290127361> **Zipper** (Zipper#7312)\n       [Lotus Elise]\n#4 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Ford GT]\n#5 - <:nissan:404718662927384596> **MrAdamTheSpriter** (MrAdamTheSpriter#2745)\n       [Toyota Supra]\n#6 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [Lamborghini Murcielago]\n#7 - <:osprey:405327841597587456> **Osprey22** (Osprey22#2088)\n       [Vauxhall Monaro]")
+  .setDescription("#1 - <:elaymm:404716313525616661> **elaymm4** (elaymm4#9944)\n       [BMW M3 GTR]\n#2 - <:darudnik:404718080527171584> **darudnik** (darudnik#4008)\n       [Porsche Carrera GT]\n#3 - <:Zipper:405765869290127361> **Zipper** (Zipper#7312)\n       [Lotus Elise]\n#4 - <:osdever:404718008041209866> **osdever** (osdever#4170)\n       [Ford GT]\n#5 - <:nissan:404718662927384596> **MrAdamTheSpriter** (MrAdamTheSpriter#2745)\n       [Toyota Supra]\n#6 - <:startul:404719175638974476> **Startul** (Startul Rtural#8867)\n       [Lamborghini Murcielago]\n#7 - <:osprey:405327841597587456> **Osprey22** (Osprey22#2088)\n       [Vauxhall Monaro]\n#8 - <:ms:416904162387689473> **mstutorialfan** (Мандаринчик#6298)\n       [Mercedes-Benz SLR McLaren]")
   message.channel.send({embed})
   }
 }
