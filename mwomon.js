@@ -592,8 +592,23 @@ if(commandIs("download", message))
   .setAuthor(message.guild.name, message.guild.iconURL())
   .setColor(message.guild.members.get(client.user.id).displayColor)
   //.setThumbnail(message.guild.iconURL())
-  .setDescription("[**Скачать MWO 1.2**](http://haont.ru/mwo/latest.zip)\n\n**Инструкция по установке в канале **<#366920395728879616>")
+  .setDescription("**Инструкция по установке в канале **<#366920395728879616>")
   message.channel.send({embed})
+  var requestModule=require("request");
+
+        requestModule("http://haont.ru/mwo/latest.zip").pipe(fs.createWriteStream("Most Wanted Online.zip"));
+        function prekol()
+{
+    message.channel.send({
+        files: [{
+          attachment: './Most Wanted Online.zip',
+          name: "Most Wanted Online.zip"
+        }]
+      })
+        .then(console.log)
+        .catch(console.error);
+}
+setTimeout(prekol, 3000)
 }
 else
 {
@@ -602,11 +617,25 @@ else
   .setAuthor(message.guild.name, message.guild.iconURL())
   .setColor(message.guild.members.get(client.user.id).displayColor)
   //.setThumbnail(message.guild.iconURL())
-  .setDescription("[**Download MWO 1.2**](http://haont.ru/mwo/latest.zip)\n\n**Installation Tutorial** <#359076824074027010>")
+  .setDescription("**Installation Tutorial** <#359076824074027010>")
   message.channel.send({embed})
-}
-}
+  var requestModule=require("request");
 
+        requestModule("http://haont.ru/mwo/latest.zip").pipe(fs.createWriteStream("Most Wanted Online.zip"));
+        function prekol()
+{
+    message.channel.send({
+        files: [{
+          attachment: './Most Wanted Online.zip',
+          name: "Most Wanted Online.zip"
+        }]
+      })
+        .then(console.log)
+        .catch(console.error);
+}
+setTimeout(prekol, 3000)
+}
+}
 if(message.content.includes("где скачать мво") || message.content.includes("как скачать мво") || message.content.includes(("ссылку" || "ссылка") && ("на мво" || "для скачивания мво" || "мво")) || message.content.includes("how to download mwo") || message.content.includes("where to download mwo"))
 {
   if(message.channel.name == "online_ru" || message.channel.name == "general_ru" || message.channel.name == "help_ru" || message.channel.name == "flood_ru" || message.channel.name == "nsfw_ru")
