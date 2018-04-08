@@ -87,7 +87,10 @@ client.on('message', message =>
 { 
 
 
-
+if(commandIs("cheliki", message))
+    {
+        message.channel.send(client.users.size)
+        }
 if(commandIs('uptime', message))
 {
     var url = "http://haont.ru/mwo/mon";
